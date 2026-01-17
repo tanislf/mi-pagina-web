@@ -1,0 +1,144 @@
+.design {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.design__services {
+  font-size: 15px;
+  font-family: "Quicksand";
+  font-weight: light;
+  color: turquoise;
+  letter-spacing: 7px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.design__welcome {
+  font-family: "Oswald";
+  font-size: 60px;
+  text-align: center;
+  line-height: 55px;
+  margin: 0;
+  padding: 0 0 40px 0;
+}
+
+.design__button-contact {
+  font-family: "Quicksand";
+  height: 50px;
+  width: 250px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: turquoise;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0;
+}
+
+.design__button-contact:hover {
+  background-color: #fff;
+  color: black;
+  border: 2px solid turquoise;
+  box-shadow: 5px 5px 0px turquoise;
+}
+
+.design__button-contact:active {
+  background-color: turquoise;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.design__ilustration {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+
+.design__ilustration-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+.design__ilustration-title {
+  font-size: 20px;
+  font-family: "Quicksand";
+  font-weight: light;
+  color: turquoise;
+  letter-spacing: 7px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.design__ilustration-header {
+  font-family: "Oswald";
+  font-size: 40px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.design__text {
+  font-family: "Quicksand";
+  text-align: justify;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.design__ilustration-grid {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.design__ilustration-image {
+  max-width: 80%;
+  height: auto;
+}
+
+.design__web {
+  display: flex;
+  justify-content: space-between;
+  padding: 100px 100px;
+}
+
+.design__web-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+.design__web-title {
+  font-size: 20px;
+  font-family: "Quicksand";
+  font-weight: light;
+  color: turquoise;
+  letter-spacing: 7px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.design__web-header {
+  font-family: "Oswald";
+  font-size: 40px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.design__web-grid {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.design__web-image {
+  max-width: 80%;
+  height: auto;
+}

@@ -1,0 +1,39 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  margin: 30px 0 0 0;
+  height: 100px;
+  padding: 0 20px;
+  font-family: "Quicksand";
+}
+
+.footer__text {
+  color: white;
+  margin: 0;
+  font-weight: light;
+  font-size: 20px;
+}
+
+.footer__navbar {
+  display: flex;
+  gap: 30px;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: white;
+}
+
+.footer__link:hover {
+  color: turquoise;
+  transition: all 0.5s;
+  transform: translate(0, -0.4em);
+  box-shadow: 0 0 0 0 #fff;
+  text-decoration: none;
+}
+
+.footer__link:not(hover) {
+  transition: all 1s;
+}

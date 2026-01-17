@@ -1,0 +1,157 @@
+.photography {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+
+.photography__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+.photography__title {
+  font-size: 20px;
+  font-family: "Quicksand";
+  font-weight: light;
+  color: turquoise;
+  letter-spacing: 7px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.photography__header {
+  font-family: "Oswald";
+  font-size: 40px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.photography__grid {
+}
+
+.photography__buttons {
+  display: flex;
+  align-items: center;
+
+  height: 60px;
+  gap: 30px;
+  width: 300px;
+}
+
+.photography__link-button {
+}
+
+.photography__button {
+  font-family: "Quicksand";
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  background: black;
+  border: none;
+}
+
+.photography__button:hover {
+  cursor: pointer;
+  transform: translate(0, -0.4em);
+}
+
+.photography__button:not(hover) {
+  transition: all 1s;
+}
+
+.photography__button_insta {
+  background-image: url("../images/instagram.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+.photography__button_insta:hover {
+  background-color: #d62976;
+  transition-duration: 1s;
+}
+
+.photography__button_linkedin {
+  background-image: url("../images/linkedin.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.photography__button_linkedin:hover {
+  background-color: #0072b1;
+  transition-duration: 1s;
+}
+
+.photography__button_behance {
+  background-image: url("../images/behance.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+.photography__button_behance:hover {
+  background-color: #0057ff;
+  transition-duration: 1s;
+}
+
+.photography__button_mail {
+  background-image: url("../images/mail-withe.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+.photography__button_mail:hover {
+  background-color: #f90101;
+  transition-duration: 1s;
+}
+
+.photography__edition {
+  display: flex;
+  justify-content: space-between;
+  padding: 100px 100px;
+}
+
+.photography__edition-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+.photography__edition-title {
+  font-size: 20px;
+  font-family: "Quicksand";
+  font-weight: light;
+  color: turquoise;
+  letter-spacing: 7px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.photography__edition-header {
+  font-family: "Oswald";
+  font-size: 40px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.photography__edition-grid {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.photography__edition-image {
+  max-width: 80%;
+  height: auto;
+}
+
+.photography__text {
+  font-family: "Quicksand";
+  text-align: justify;
+  margin: 0;
+  padding: 0 0 15px;
+}

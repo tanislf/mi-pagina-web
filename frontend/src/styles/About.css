@@ -1,0 +1,42 @@
+.about {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+  /* display: none; */
+}
+
+.about__container {
+  width: 50%;
+}
+
+.about__me {
+  font-family: "Oswald";
+  font-size: 40px;
+  margin: 0 0 10px 0;
+}
+
+.about__welcome {
+  font-size: 20px;
+  font-family: "Quicksand";
+  margin: 0;
+  font-weight: lighter;
+  color: turquoise;
+  letter-spacing: 7px;
+}
+
+.about__description {
+  font-family: "Quicksand";
+  text-align: justify;
+}
+
+.about__link {
+  text-decoration: none;
+  color: black;
+}
+
+.about__link:hover {
+  color: turquoise;
+  font-weight: bold;
+}

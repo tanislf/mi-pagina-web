@@ -1,0 +1,153 @@
+.portfolio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.portfolio__welcome {
+  font-size: 15px;
+  font-family: "Quicksand";
+  font-weight: light;
+  color: turquoise;
+  letter-spacing: 7px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.portfolio__header {
+  font-family: "Oswald";
+  font-size: 60px;
+  text-align: center;
+  line-height: 55px;
+  margin: 0;
+  padding: 0 0 40px 0;
+}
+
+.portfolio__button-contact {
+  font-family: "Shadows Into Light";
+  font-size: 17px;
+  height: 50px;
+  width: 250px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: turquoise;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0;
+}
+
+.portfolio__button-contact:hover {
+  background-color: #fff;
+  color: black;
+  border: 2px solid turquoise;
+  box-shadow: 5px 5px 0px turquoise;
+}
+
+.portfolio__button-contact:active {
+  background-color: turquoise;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.portfolio__options {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 0 0 50px 100px;
+}
+
+.portfolio__options-button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: turquoise;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0;
+  font-family: "Quicksand";
+  height: 50px;
+  width: 130px;
+}
+
+.portfolio__options-button:hover {
+  background-color: #fff;
+  color: black;
+  border: 2px solid turquoise;
+  box-shadow: 5px 5px 0px turquoise;
+}
+
+.portfolio__options-button:active {
+  background-color: turquoise;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.portfolio__works {
+  padding: 0 100px;
+}
+
+.portfolio__grid {
+  height: 100%;
+  background-color: brown;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto-fill);
+  justify-items: center;
+  grid-gap: 30px;
+}
+
+.portfolio__grid-container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  align-items: center;
+  background-color: aquamarine;
+}
+
+.portfolio__grid-image {
+  max-width: 20em;
+  height: auto;
+}
+
+.portfolio__grid-description {
+  display: flex;
+  padding: 20px 0 0 0;
+  width: 20em;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.portfolio__grid-name {
+  font-family: "Oswald";
+  font-size: 30px;
+  height: 40px;
+  margin: 0;
+}
+
+.portfolio__grid-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  border-radius: 7px;
+  color: white;
+  font-size: 15px;
+  font-family: "Quicksand";
+  height: 40px;
+  width: 100px;
+  margin: 0;
+}
+
+.portfolio__grid-text {
+  width: 20em;
+}
