@@ -38,9 +38,7 @@ function Home() {
 
       <div className="home__buttons">
         <Link to="/design" className="home__link-button">
-          <button className="home__button home__button_design">
-            Necesito un diseñador
-          </button>
+          <button className="home__button ">Necesito un diseñador</button>
         </Link>
         <Link to="/photography" className="home__link-button">
           <button className="home__button">Necesito un fotógrafo</button>

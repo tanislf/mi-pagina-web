@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import meCartoon from "../../images/imagen-personal.png";
 
-function Design() {
+function Design({ onContactClick }) {
   return (
     <>
       <section className="design">
@@ -12,11 +12,14 @@ function Design() {
           Visuales que conectan y sitios web que <br />
           funcionan para creativos.
         </h1>
-        <Link to="/contact">
-          <button className="design__button-contact">
-            Empezemos un proyecto juntos
-          </button>
-        </Link>
+
+        <button
+          type="button"
+          onClick={onContactClick}
+          className="design__button-contact"
+        >
+          Empecemos un proyecto juntos
+        </button>
       </section>
 
       <section className="design__ilustration">

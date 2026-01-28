@@ -1,12 +1,12 @@
-.contact {
+/* .contact {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+  background-color: rgba(162, 37, 37, 0.5);
+} */
 
 .contact__modal {
   position: relative;
@@ -14,10 +14,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: rgb(202, 9, 9);
   border-radius: 50px;
-  width: 80%;
+  width: 100%;
   height: 600px;
+  padding: 30px;
 }
 
 .contact__form {

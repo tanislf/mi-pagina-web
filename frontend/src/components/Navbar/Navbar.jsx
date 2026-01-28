@@ -11,7 +11,7 @@ function Navbar({ onContactClick }) {
       </div>
 
       <div className="navbar__nav">
-        <Link to="/services" className="navbar__link">
+        <Link to="/" className="navbar__link">
           Servicios
         </Link>
         <Link to="/portfolio" className="navbar__link">

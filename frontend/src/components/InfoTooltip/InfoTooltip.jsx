@@ -1,17 +1,24 @@
-import check from "../../images/check.png";
+import Modal from "../Modal/Modal";
 
-function InfoTooltip() {
+function InfoTooltip({ isOpen, onClose, isSuccess }) {
+  if (!isOpen) return null;
+
   return (
-    <section className="tooltip">
-      <div className="tooltip__container">
-        <p className="tooltip__text">¡Solicitud enviada!</p>
-        <p className="tooltip__text">
-          Me pondré en contacto contigo <br />
-          lo antes posible.
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <div className="infotooltip__container">
+        <div
+          className={`infotooltip__logo ${
+            isSuccess ? "infotooltip__logo_success" : "infotooltip__logo_fail"
+          }`}
+        />
+
+        <p className="infotooltip__message">
+          {isSuccess
+            ? "¡Solicitud enviada! Me pondré en contacto contigo lo antes posible."
+            : "Uy, algo salió mal. Por favor, inténtalo de nuevo."}
         </p>
-        <img className="tooltip__image" src={check} />
       </div>
-    </section>
+    </Modal>
   );
 }
 

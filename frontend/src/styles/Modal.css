@@ -1,0 +1,28 @@
+.modaltool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: transparent;
+}
+
+.modaltool__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modaltool__content {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+}
+
+.modaltool__close {
+  position: relative;
+  z-index: 1;
+  color: aquamarine;
+}

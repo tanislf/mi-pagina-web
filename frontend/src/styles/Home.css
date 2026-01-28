@@ -33,32 +33,11 @@
 }
 
 .home__button {
-  background-color: #f0f0f0;
-  border: 0;
-  color: #242424;
-  box-shadow: inset 0 0.0625em 0 0 #f4f4f4, 0 0.0625em 0 0 #efefef,
-    0 0.125em 0 0 #ececec, 0 0.25em 0 0 #e0e0e0, 0 0.3125em 0 0 #dedede,
-    0 0.375em 0 0 #dcdcdc, 0 0.425em 0 0 #cacaca, 0 0.425em 0.5em 0 #cecece;
-  transition: 0.15s ease;
-  cursor: pointer;
-  font-family: "Quicksand";
-  font-size: 15px;
-  height: 50px;
-  width: 200px;
-  border-radius: 6px;
-}
-
-.home__button:active {
-  translate: 0 0.225em;
-  box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
-    0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
-    0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
-}
-
-.home__button_design {
   display: inline-block;
   font-family: "Shadows Into Light";
   font-size: 20px;
+  height: 50px;
+  width: 200px;
   text-decoration: none;
   color: #fff;
   background-color: turquoise;
@@ -70,14 +49,14 @@
   margin: 0;
 }
 
-.home__button_design:hover {
+.home__button:hover {
   background-color: #fff;
   color: black;
   border: 2px solid turquoise;
   box-shadow: 5px 5px 0px turquoise;
 }
 
-.home__button_design:active {
+.home__button:active {
   background-color: turquoise;
   box-shadow: none;
   transform: translateY(4px);

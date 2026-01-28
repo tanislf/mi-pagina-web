@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../utils/api.js";
 import AddProjectModal from "../components/Modal/AddProjectModal.jsx";
 
-function Portfolio() {
+function Portfolio({ onContactClick }) {
   const [portfolio, setPortfolio] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
   const [loading, setLoading] = useState(true);
@@ -36,11 +35,14 @@ function Portfolio() {
           Visuales que conectan y sitios web que <br />
           funcionan para creativos.
         </h1>
-        <Link to="/contact">
-          <button className="portfolio__button-contact">
-            Empezemos un proyecto juntos
-          </button>
-        </Link>
+
+        <button
+          type="button"
+          onClick={onContactClick}
+          className="portfolio__button-contact"
+        >
+          Empecemos un proyecto juntos
+        </button>
       </section>
 
       <div className="portfolio__options">
