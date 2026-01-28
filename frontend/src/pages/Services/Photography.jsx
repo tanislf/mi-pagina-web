@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
+import CircularGallery from "../../components/Animations/CircularGallery";
 
 function Photography() {
   return (
     <>
+      <section className="design">
+        <p className="design__services">FOTÓGRAFA Y EDITORA DIGITAL</p>
+        <h1 className="design__welcome">
+          Visuales que conectan y sitios web que <br />
+          funcionan para creativos.
+        </h1>
+        <Link to="/contact">
+          <button className="design__button-contact">
+            Empezemos un proyecto juntos
+          </button>
+        </Link>
+      </section>
+
       <section className="photography">
         <div className="photography__container">
           <p className="photography__title">FOTOGRAFÍA</p>
@@ -20,15 +34,24 @@ function Photography() {
           </p>
 
           <div className="photography__buttons">
-            <Link to="/contact" className="photography__link-button">
+            <Link
+              to="https://www.instagram.com/tania.lofier/"
+              className="photography__link-button"
+            >
               <button className="photography__button photography__button_insta" />
             </Link>
 
-            <Link to="" className="photography__link-button">
+            <Link
+              to="https://www.linkedin.com/in/tania-lópez-fierros-216682345/"
+              className="photography__link-button"
+            >
               <button className="photography__button photography__button_linkedin" />
             </Link>
 
-            <Link to="" className="photography__link-button">
+            <Link
+              to="https://www.behance.net/tanialopez29"
+              className="photography__link-button"
+            >
               <button className="photography__button photography__button_behance" />
             </Link>
 
@@ -39,7 +62,13 @@ function Photography() {
         </div>
 
         <div className="photography__grid">
-          <img src="" className="photography__image" />
+          <CircularGallery
+            bend={0.7}
+            textColor="#ffffff"
+            borderRadius={0.05}
+            scrollEase={0.02}
+            scrollSpeed={1.9}
+          />
         </div>
       </section>
 

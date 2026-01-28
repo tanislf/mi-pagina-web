@@ -1,15 +1,33 @@
 import { Link } from "react-router-dom";
-import meImage from "../images/imagen-personal.png";
-
-const projects = [
-  {
-    id: 1,
-
-    title: "holis",
-  },
-];
+import { useEffect, useState } from "react";
+import api from "../utils/api.js";
+import AddProjectModal from "../components/Modal/AddProjectModal.jsx";
 
 function Portfolio() {
+  const [portfolio, setPortfolio] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [IsModalOpen, setIsModalOpen] = useState(false);
+
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+  //cargar proyectos
+  const fetchProjects = async (category = "") => {
+    try {
+      setLoading(true);
+      const data = await api.getProjects(category);
+      setPortfolio(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
   return (
     <>
       <section className="portfolio">
@@ -26,64 +44,68 @@ function Portfolio() {
       </section>
 
       <div className="portfolio__options">
-        <button className="portfolio__options-button">Ilustración</button>
-        <button className="portfolio__options-button">Fotografía</button>
-        <button className="portfolio__options-button">Desarrollo web</button>
+        {[
+          { label: "Ilustración", value: "ilustracion" },
+          { label: "Fotografía", value: "fotografia" },
+          { label: "Dearrollo web", value: "desarrollo-web" },
+          { label: "Todos", value: "" },
+        ].map(({ label, value }) => (
+          <button
+            key={value || "all"}
+            className={`portfolio__options-button ${activeCategory === value ? "active" : ""}`}
+            onClick={() => {
+              setActiveCategory(value);
+              fetchProjects(value);
+            }}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       <section className="portfolio__works">
+        {isAdmin && (
+          <button
+            className="portfolio__add-button"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Agregar Proyecto
+          </button>
+        )}
+
+        {isAdmin && IsModalOpen && (
+          <AddProjectModal
+            onClose={() => setIsModalOpen(false)}
+            onProjectAdded={() => fetchProjects(activeCategory)}
+          />
+        )}
+
         <div className="portfolio__grid">
-          <div className="portfolio__grid-container">
-            <img className="portfolio__grid-image" src={meImage} alt="yo" />
+          {loading && <p>Cargando proyectos...</p>}
 
-            <div className="portfolio__grid-description">
-              <h1 className="portfolio__grid-name">Hola que hace</h1>
-              <figure className="portfolio__grid-category">Ilustración</figure>
-            </div>
+          {!loading && portfolio.length === 0 && (
+            <p className="portfolio__warning">¡Sigo trabajando en ello!</p>
+          )}
 
-            <p className="portfolio__grid-text">
-              Una foto de mi trabajo de ilustración.
-            </p>
-          </div>
+          {!loading &&
+            portfolio.map((project) => (
+              <div key={project._id} className="portfolio__grid-container">
+                <img
+                  className="portfolio__grid-image"
+                  src={project.image?.[0]}
+                  alt={project.title}
+                />
 
-          <div className="portfolio__grid-container">
-            <img className="portfolio__grid-image" src={meImage} alt="yo" />
+                <div className="portfolio__grid-description">
+                  <h1 className="portfolio__grid-name">{project.title}</h1>
+                  <figure className="portfolio__grid-category">
+                    {project.category}
+                  </figure>
+                </div>
 
-            <div className="portfolio__grid-description">
-              <h1 className="portfolio__grid-name">Hola que hace</h1>
-              <figure className="portfolio__grid-category">Ilustración</figure>
-            </div>
-
-            <p className="portfolio__grid-text">
-              Una foto de mi trabajo de ilustración.
-            </p>
-          </div>
-
-          <div className="portfolio__grid-container">
-            <img className="portfolio__grid-image" src={meImage} alt="yo" />
-
-            <div className="portfolio__grid-description">
-              <h1 className="portfolio__grid-name">Hola que hace</h1>
-              <figure className="portfolio__grid-category">Ilustración</figure>
-            </div>
-
-            <p className="portfolio__grid-text">
-              Una foto de mi trabajo de ilustración.
-            </p>
-          </div>
-
-          <div className="portfolio__grid-container">
-            <img className="portfolio__grid-image" src={meImage} alt="yo" />
-
-            <div className="portfolio__grid-description">
-              <h1 className="portfolio__grid-name">Hola que hace</h1>
-              <figure className="portfolio__grid-category">Ilustración</figure>
-            </div>
-
-            <p className="portfolio__grid-text">
-              Una foto de mi trabajo de ilustración.
-            </p>
-          </div>
+                <p className="portfolio__grid-text">{project.description}</p>
+              </div>
+            ))}
         </div>
       </section>
     </>

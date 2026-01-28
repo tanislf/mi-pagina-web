@@ -92,6 +92,10 @@
   transform: translateY(4px);
 }
 
+.portfolio__add-button {
+  background-color: red;
+}
+
 .portfolio__works {
   padding: 0 100px;
 }
@@ -125,6 +129,10 @@
   width: 20em;
   align-items: center;
   justify-content: space-between;
+}
+
+.portfolio__warning {
+  font-family: "Oswald";
 }
 
 .portfolio__grid-name {

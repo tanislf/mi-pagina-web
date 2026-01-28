@@ -29,6 +29,11 @@
 }
 
 .photography__grid {
+  background-color: transparent;
+  position: relative;
+  height: 600px;
+  width: 600px;
+  margin: 0;
 }
 
 .photography__buttons {

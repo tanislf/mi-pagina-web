@@ -142,3 +142,81 @@
   max-width: 80%;
   height: auto;
 }
+
+.design__buttons {
+  display: flex;
+  align-items: center;
+
+  height: 60px;
+  gap: 30px;
+  width: 300px;
+}
+
+.design__link-button {
+}
+
+.design__button {
+  font-family: "Quicksand";
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  background: black;
+  border: none;
+}
+
+.design__button:hover {
+  cursor: pointer;
+  transform: translate(0, -0.4em);
+}
+
+.design__button:not(hover) {
+  transition: all 1s;
+}
+
+.design__button_insta {
+  background-image: url("../images/instagram.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+.design__button_insta:hover {
+  background-color: #d62976;
+  transition-duration: 1s;
+}
+
+.design__button_linkedin {
+  background-image: url("../images/linkedin.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.design__button_linkedin:hover {
+  background-color: #0072b1;
+  transition-duration: 1s;
+}
+
+.design__button_behance {
+  background-image: url("../images/behance.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+.design__button_behance:hover {
+  background-color: #0057ff;
+  transition-duration: 1s;
+}
+
+.design__button_mail {
+  background-image: url("../images/mail-withe.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+.design__button_mail:hover {
+  background-color: #f90101;
+  transition-duration: 1s;
+}

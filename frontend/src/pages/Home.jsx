@@ -37,12 +37,12 @@ function Home() {
       <p className="home__subtitle">Si puedes soñarlo puedes crearlo.</p>
 
       <div className="home__buttons">
-        <Link to="/services" className="home__link-button">
+        <Link to="/design" className="home__link-button">
           <button className="home__button home__button_design">
             Necesito un diseñador
           </button>
         </Link>
-        <Link to="/services" className="home__link-button">
+        <Link to="/photography" className="home__link-button">
           <button className="home__button">Necesito un fotógrafo</button>
         </Link>
       </div>

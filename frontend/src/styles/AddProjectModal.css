@@ -1,0 +1,64 @@
+.modal {
+  display: flex;
+  justify-content: center;
+}
+
+.modal__form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 400px;
+  height: 400px;
+  border-radius: 20px;
+  padding: 0 20px;
+  gap: 10px;
+}
+
+.modal__text {
+  font-family: "Oswald";
+  margin: 0 0 20px 0;
+}
+
+.modal__input {
+  font-family: "Quicksand";
+  height: 30px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.modal__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.modal__button {
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  font-family: "Quicksand";
+  border-radius: 7px;
+  height: 40px;
+  width: 150px;
+  border: none;
+  padding: 0;
+  bottom: 0;
+  right: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal__button:hover {
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.modal__button:active {
+  transform: translateY(10px);
+}

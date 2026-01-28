@@ -22,8 +22,14 @@
 }
 
 .navbar__link {
+  font-family: "Quicksand";
+  border: none;
+  background: none;
   text-decoration: none;
   color: black;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
 }
 
 .navbar__link:hover {

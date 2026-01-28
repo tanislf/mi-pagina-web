@@ -37,6 +37,33 @@ function Design() {
             detalle para que el resultado no solo se vea bien, sino que se
             sienta auténtico y hecho a tu medida.
           </p>
+
+          <div className="design__buttons">
+            <Link
+              to="https://www.instagram.com/tani.sdoodles/"
+              className="design__link-button"
+            >
+              <button className="design__button design__button_insta" />
+            </Link>
+
+            <Link
+              to="https://www.linkedin.com/in/tania-lópez-fierros-216682345/"
+              className="design__link-button"
+            >
+              <button className="design__button design__button_linkedin" />
+            </Link>
+
+            <Link
+              to="https://www.behance.net/tanialopez29"
+              className="design__link-button"
+            >
+              <button className="design__button design__button_behance" />
+            </Link>
+
+            <Link to="" className="design__link-button">
+              <button className="design__button design__button_mail" />
+            </Link>
+          </div>
         </div>
 
         <div className="design__ilustration-grid">
@@ -64,6 +91,26 @@ function Design() {
             tus ambiciones. Me encargo de ponerlas en marcha y subirlas a la
             red.
           </p>
+
+          <div className="design__buttons">
+            <Link
+              to="https://www.linkedin.com/in/tania-lópez-fierros-216682345/"
+              className="design__link-button"
+            >
+              <button className="design__button design__button_linkedin" />
+            </Link>
+
+            <Link
+              to="https://www.behance.net/tanialopez29"
+              className="design__link-button"
+            >
+              <button className="design__button design__button_behance" />
+            </Link>
+
+            <Link to="" className="design__link-button">
+              <button className="design__button design__button_mail" />
+            </Link>
+          </div>
         </div>
       </section>
     </>
