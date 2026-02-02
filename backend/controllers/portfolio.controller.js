@@ -20,13 +20,6 @@ export async function getProjects(req, res) {
 //Crear Proyecto
 export async function createProject(req, res) {
   try {
-    if (!req.files || !req.files.length) {
-      return res.status(400).json({
-        message: "Selecciona al menos una imágen",
-      });
-    }
-
-    const images = req.files.map((file) => file.path);
     const { title, description, category, link } = req.body;
 
     if (!title || !description || !category) {
@@ -34,6 +27,14 @@ export async function createProject(req, res) {
         message: "Faltan campos obligatorios",
       });
     }
+
+    if (!req.files || req.files.length === 0) {
+      return res
+        .status(400)
+        .json({ message: "Selecciona al menos una imagen" });
+    }
+
+    const images = req.files.map((file) => file.path);
 
     const newProject = await Portfolio.create({
       title,
@@ -45,7 +46,11 @@ export async function createProject(req, res) {
 
     res.status(201).json(newProject);
   } catch (error) {
-    res.status(500).json({ message: "Erorr al crear tu proyecto", error });
+    console.error("CREATE PROJECT ERROR:", error);
+    res.status(500).json({
+      message: "Error al crear tu proyecto",
+      error: error.message,
+    });
   }
 }
 
@@ -70,24 +75,36 @@ export async function deleteProject(req, res) {
   }
 }
 
-//Actualizar información del proyecto
+//Actualizar proyecto
 export async function updateProject(req, res) {
   try {
     const { id } = req.params;
     const { title, description, category, link, featured, order } = req.body;
 
-    const updatedProject = await Portfolio.findByIdAndUpdate(
-      id,
-      { title, description, category, link, featured, order },
-      { new: true, runValidators: true },
-    );
+    const project = await Portfolio.findById(id);
 
-    if (!updatedProject) {
+    if (!project) {
       return res.status(404).json({ message: "Proyecto no encontrado" });
     }
 
-    res.status(200).json(updatedProject);
+    // actualizar texto solo si viene
+    if (title) project.title = title;
+    if (description) project.description = description;
+    if (category) project.category = category;
+    if (link !== undefined) project.link = link;
+    if (featured !== undefined) project.featured = featured;
+    if (order !== undefined) project.order = order;
+
+    // actualizar imágenes
+    if (req.files && req.files.length > 0) {
+      project.images = req.files.map((file) => file.path);
+    }
+
+    await project.save();
+
+    res.status(200).json(project);
   } catch (error) {
-    res.status(400).json({ message: "Datos inválidos" });
+    console.error("UPDATE ERROR:", error);
+    res.status(400).json({ message: error.message });
   }
 }

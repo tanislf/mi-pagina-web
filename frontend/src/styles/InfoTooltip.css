@@ -1,19 +1,9 @@
-/* .tooltip {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-} */
-
 .infotooltip__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(110, 104, 104);
+  background-color: white;
   width: 400px;
   height: 250px;
   border-radius: 20px;

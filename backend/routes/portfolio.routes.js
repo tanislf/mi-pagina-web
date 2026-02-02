@@ -5,7 +5,7 @@ import {
   updateProject,
   deleteProject,
 } from "../controllers/portfolio.controller.js";
-import { isAdmin } from "../middlewares/auth.js";
+import { auth, isAdmin } from "../middlewares/auth.js";
 import { upload } from "../config/multer.js";
 
 const router = Router();
@@ -14,9 +14,8 @@ const router = Router();
 router.get("/", getProjects);
 
 //Rutas solo para Admin
-// router.post("/", upload.array("images", 50), createProject);
-router.post("/", isAdmin, upload.array("images", 50), createProject);
-router.put("/:id", isAdmin, upload.array("images", 50), updateProject);
-router.delete("/:id", isAdmin, deleteProject);
+router.post("/", auth, isAdmin, upload.array("images", 50), createProject);
+router.put("/:id", auth, isAdmin, upload.array("images"), updateProject);
+router.delete("/:id", auth, isAdmin, deleteProject);
 
 export default router;

@@ -1,4 +1,4 @@
-import { getToken } from "./token";
+import { getToken } from "./token.js";
 
 class Api {
   constructor({ baseUrl }) {
@@ -9,8 +9,11 @@ class Api {
   _getHeaders({ auth = false, isFormData = false } = {}) {
     const headers = {};
 
+    const token = getToken();
+    console.log("TOKEN SENT:", token);
+
     if (!isFormData) {
-      headers["Content-Type"] = "aplication/json";
+      headers["Content-Type"] = "application/json";
     }
 
     if (auth) {
@@ -26,9 +29,14 @@ class Api {
   _checkResponse(res) {
     if (res.ok) return res.json();
 
-    return res.json().then((err) => {
-      throw new Error(err.message || `Error ${res.status}`);
-    });
+    return res
+      .json()
+      .catch(() => {
+        throw new Error(`Error ${res.status}`);
+      })
+      .then((err) => {
+        throw new Error(err.message || `Error ${res.status}`);
+      });
   }
 
   //Mostrar mis proyectos de portafolio
@@ -42,6 +50,14 @@ class Api {
     );
   }
 
+  adminLogin(secret) {
+    return fetch(`${this.baseUrl}/auth/admin`, {
+      method: "POST",
+      headers: this._getHeaders(),
+      body: JSON.stringify({ secret }),
+    }).then(this._checkResponse);
+  }
+
   //Agragar más proyectos
   createProject(formData) {
     return fetch(`${this.baseUrl}/portfolio`, {
@@ -52,11 +68,11 @@ class Api {
   }
 
   //Editar un proyecto
-  updateProject(id, data) {
+  updateProject(id, formData) {
     return fetch(`${this.baseUrl}/portfolio/${id}`, {
       method: "PUT",
-      headers: this._getHeaders({ auth: true }),
-      body: JSON.stringify(data),
+      headers: this._getHeaders({ auth: true, isFormData: true }),
+      body: formData,
     }).then(this._checkResponse);
   }
 

@@ -56,20 +56,20 @@
   transform: translateY(4px);
 }
 
-.design__ilustration {
+.design__illustration {
   display: flex;
   justify-content: space-between;
   padding: 0 100px;
 }
 
-.design__ilustration-container {
+.design__illustration-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 40%;
 }
 
-.design__ilustration-title {
+.design__illustration-title {
   font-size: 20px;
   font-family: "Quicksand";
   font-weight: light;
@@ -79,7 +79,7 @@
   padding: 0 0 15px;
 }
 
-.design__ilustration-header {
+.design__illustration-header {
   font-family: "Oswald";
   font-size: 40px;
   margin: 0;
@@ -93,13 +93,13 @@
   padding: 0 0 15px;
 }
 
-.design__ilustration-grid {
+.design__illustration-grid {
   display: flex;
   justify-content: center;
   width: 50%;
 }
 
-.design__ilustration-image {
+.design__illustration-image {
   max-width: 80%;
   height: auto;
 }

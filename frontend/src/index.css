@@ -9,6 +9,10 @@
 @import url(./styles/Contact.css);
 @import url(./styles/Modal.css);
 @import url(./styles/AddProjectModal.css);
+@import url(./styles/AddAdminModal.css);
+@import url(./styles/DeleteProjectModal.css);
+@import url(./styles/EditProjectModal.css);
+@import url(./styles/ImageProjectModal.css);
 @import url(./styles/InfoTooltip.css);
 @import url(./styles/Animations/Splitext.css);
 @import url(./styles/Animations/CircularGallery.css);

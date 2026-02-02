@@ -14,7 +14,7 @@ const portfolioSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ["ilustracion", "fotografia", "web"],
+      enum: ["illustration", "photography", "web"],
       required: true,
     },
     images: [

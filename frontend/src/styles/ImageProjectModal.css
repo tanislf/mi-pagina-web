@@ -1,0 +1,49 @@
+.image-modal {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1200px;
+  justify-content: center;
+  position: relative;
+}
+
+.image-modal__image {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.image-modal__title {
+  font-family: "Oswald";
+  color: white;
+}
+
+.image-modal__close-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/close-icon.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: black;
+  border: none;
+  border-radius: 10px;
+  top: 0;
+  right: 0;
+  margin: 10px 10px;
+  cursor: pointer;
+}
+
+.image-modal__close-button:hover {
+  transition: all 0.5s;
+  transform: translate(0, -0.5em);
+}
+
+.image-modal__close-button:not(hover) {
+  transition: all 1s;
+}
+
+.image-modal__close-button:active {
+  transform: translateY(10px);
+}

@@ -6,9 +6,7 @@ import Photography from "../pages/Services/Photography.jsx";
 import Portfolio from "../pages/Portfolio.jsx";
 import ContactForm from "../pages/Contact.jsx";
 import InfoTooltip from "./InfoTooltip/InfoTooltip.jsx";
-import AddProjectModal from "./Modal/AddProjectModal.jsx";
 import Footer from "../components/Footer/Footer.jsx";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -55,7 +53,7 @@ function App() {
             SetIsTooltipOpen(true);
           }}
         />
-        <AddProjectModal />
+
         <InfoTooltip
           isOpen={isTooltipOpen}
           isSuccess={isSuccess}

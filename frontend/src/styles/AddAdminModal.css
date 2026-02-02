@@ -1,44 +1,41 @@
-.modal__form {
-  background-color: white;
+.admin__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  background-color: white;
   width: 400px;
-  height: 400px;
-  border-radius: 20px;
-  padding: 0 20px;
-  gap: 10px;
+  height: 150px;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 15px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
-
-.modal__error {
-  color: red;
+.admin__text {
   font-family: "Oswald";
   margin: 0;
+  color: black;
 }
 
-.modal__text {
+.admin__error {
   font-family: "Oswald";
-  margin: 0 0 20px 0;
+  margin: 0;
+  color: red;
 }
 
-.modal__input {
+.admin__input {
   font-family: "Quicksand";
-  height: 30px;
   border: 1px solid #000000;
   border-radius: 5px;
   margin: 0;
-  padding: 0;
+  padding-left: 10px;
 }
 
-.modal__buttons {
+.admin__options {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
 }
 
-.modal__button {
+.admin__button {
   background-color: black;
   color: white;
   font-size: 15px;
@@ -51,12 +48,9 @@
   bottom: 0;
   right: 0;
   transition: all 0.5s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.modal__button:hover {
+.admin__button:hover {
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;
@@ -64,6 +58,6 @@
   cursor: pointer;
 }
 
-.modal__button:active {
+.admin__button:active {
   transform: translateY(10px);
 }

@@ -22,10 +22,10 @@ function Design({ onContactClick }) {
         </button>
       </section>
 
-      <section className="design__ilustration">
-        <div className="design__ilustration-container">
-          <p className="design__ilustration-title">ILUSTRACIÓN</p>
-          <h1 className="design__ilustration-header">Trae lápiz y papel</h1>
+      <section className="design__illustration">
+        <div className="design__illustration-container">
+          <p className="design__illustration-title">ILUSTRACIÓN</p>
+          <h1 className="design__illustration-header">Trae lápiz y papel</h1>
           <p className="design__text">
             Si tienes una idea taladrando tu crerebro (por muy loca, abstracta o
             específica que sea), yo me encargo de darle forma, color y
@@ -69,8 +69,8 @@ function Design({ onContactClick }) {
           </div>
         </div>
 
-        <div className="design__ilustration-grid">
-          <img src={meCartoon} className="design__ilustration-image" />
+        <div className="design__illustration-grid">
+          <img src={meCartoon} className="design__illustration-image" />
         </div>
       </section>
 

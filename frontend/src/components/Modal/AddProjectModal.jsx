@@ -1,7 +1,9 @@
 import { useState } from "react";
-import api from "../../utils/api";
+import api from "../../utils/api.js";
+import Modal from "./Modal.jsx";
+import LoaderSmall from "../Animations/LoaderDotsSmall.jsx";
 
-function AddProjectModal({ onClose, onProjectAdded }) {
+function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -10,6 +12,7 @@ function AddProjectModal({ onClose, onProjectAdded }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  //crear el proyecto
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,14 +34,14 @@ function AddProjectModal({ onClose, onProjectAdded }) {
       onProjectAdded(newProject);
       onClose();
     } catch (err) {
-      setError("No se pudo crear el proyecto");
+      setError("No se pudo crear el proyecto.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="modal">
+    <Modal isOpen={isOpen} onClose={onClose}>
       <form className="modal__form" onSubmit={handleSubmit}>
         <h2 className="modal__text">Nuevo Proyecto</h2>
 
@@ -71,7 +74,7 @@ function AddProjectModal({ onClose, onProjectAdded }) {
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value="">Selecciona una categoría</option>
-          <option value="ilustration">Ilustración</option>
+          <option value="illustration">Ilustración</option>
           <option value="photography">Fotografía</option>
           <option value="web">Desarrollo Web</option>
         </select>
@@ -79,20 +82,21 @@ function AddProjectModal({ onClose, onProjectAdded }) {
         <input
           className="modal__input-image"
           accept="image/*"
+          multiple
           onChange={(e) => setImage(e.target.files)}
           type="file"
         />
 
         <div className="modal__buttons">
           <button className="modal__button" type="submit" disabled={loading}>
-            {loading ? "Guardardando..." : "Guardar"}
+            {loading ? <LoaderSmall /> : "Guardar"}
           </button>
           <button className="modal__button" type="button" onClick={onClose}>
             Cacelar
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }
 
