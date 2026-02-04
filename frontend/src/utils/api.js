@@ -50,11 +50,19 @@ class Api {
     );
   }
 
+  //loguear admin
   adminLogin(secret) {
     return fetch(`${this.baseUrl}/auth/admin`, {
       method: "POST",
       headers: this._getHeaders(),
       body: JSON.stringify({ secret }),
+    }).then(this._checkResponse);
+  }
+
+  //mostrar mensajes
+  getMessages() {
+    return fetch(`${this.baseUrl}/auth/admin/messages`, {
+      headers: this._getHeaders(),
     }).then(this._checkResponse);
   }
 

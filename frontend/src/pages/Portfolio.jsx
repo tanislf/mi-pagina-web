@@ -1,36 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import Loader from "../components/Animations/LoaderDots.jsx";
 
 import api from "../utils/api.js";
 import AddProjectModal from "../components/Modal/AddProjectModal.jsx";
-import AddAdminModal from "../components/Modal/AddAdminModal.jsx";
 import DeleteProject from "../components/Modal/DeleteProjectModal.jsx";
 import EditProject from "../components/Modal/EditProjectModal.jsx";
 import ImageModal from "../components/Modal/ImageProjectModal.jsx";
-import { getToken, removeToken } from "../utils/token.js";
 
-function Portfolio({ onContactClick, onOpenImage, imageCard }) {
+function Portfolio({
+  onContactClick,
+  isAdmin,
+  onAdminLogin,
+  onMessagesClick,
+  onLogout,
+}) {
   const [portfolio, setPortfolio] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
   const [activeImage, setActiveImage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [projectToDelete, setProjectToDelete] = useState(null);
   const [projectToEdit, setProjectToEdit] = useState(null);
-  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
-
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
-  const [isAdmin, setIsAdmin] = useState(
-    localStorage.getItem("isAdmin") === "true",
-  );
-
   //cargar proyectos
-  const fetchProjects = async (category = "") => {
+  const fetchProjects = useCallback(async (category = "") => {
     try {
       setLoading(true);
       const data = await api.getProjects(category);
@@ -40,10 +38,10 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   //modal de borrar proyectos
-  const closeDleteModal = () => {
+  const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
     setProjectToDelete(null);
   };
@@ -54,31 +52,11 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
 
     try {
       await api.deleteProject(projectToDelete);
-      closeDleteModal();
-      setProjectToDelete(null);
+      closeDeleteModal();
       fetchProjects(activeCategory);
     } catch (err) {
       console.error("Error al eliminar proyecto", err);
     }
-  };
-
-  //cerrar sesión
-  const handleLogout = () => {
-    removeToken();
-    localStorage.removeItem("isAdmin");
-    setIsAdmin(false);
-
-    setIsProjectModalOpen(false);
-    setIsEditModalOpen(false);
-    setIsDeleteModalOpen(false);
-    setProjectToEdit(null);
-    setProjectToDelete(null);
-
-    setShowLogoutMessage(true);
-
-    setTimeout(() => {
-      setShowLogoutMessage(false);
-    }, 2500);
   };
 
   //abrir imagen
@@ -95,11 +73,7 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
 
   useEffect(() => {
     fetchProjects();
-    if (!getToken()) {
-      localStorage.removeItem("isAdmin");
-      setIsAdmin(false);
-    }
-  }, []);
+  }, [fetchProjects]);
 
   return (
     <>
@@ -145,7 +119,7 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
             if (isAdmin) {
               setIsProjectModalOpen(true);
             } else {
-              setIsAdminModalOpen(true);
+              onAdminLogin();
             }
           }}
         />
@@ -154,21 +128,18 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
           <button
             className="portfolio__close-session-button"
             type="button"
-            onClick={handleLogout}
+            onClick={onLogout}
+          />
+        )}
+
+        {isAdmin && (
+          <button
+            className="portfolio__messages-button"
+            type="button"
+            onClick={onMessagesClick}
           />
         )}
       </div>
-
-      <AddAdminModal
-        isOpen={isAdminModalOpen}
-        onClose={() => setIsAdminModalOpen(false)}
-        onSuccess={() => {
-          localStorage.setItem("isAdmin", "true");
-          setIsAdmin(true);
-          setIsAdminModalOpen(false);
-          setIsProjectModalOpen(true);
-        }}
-      />
 
       {isAdmin && (
         <AddProjectModal
@@ -180,11 +151,8 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
 
       <DeleteProject
         isOpen={isDeleteModalOpen}
-        onClose={() => {
-          setIsDeleteModalOpen(false);
-          setProjectToDelete(null);
-        }}
-        onConfirm={() => handleDelete(projectToDelete)}
+        onClose={closeDeleteModal}
+        onConfirm={handleDelete}
       />
 
       <EditProject
@@ -208,12 +176,6 @@ function Portfolio({ onContactClick, onOpenImage, imageCard }) {
 
         {!loading && portfolio.length === 0 && (
           <p className="portfolio__warning">¡Sigo trabajando en ello!</p>
-        )}
-
-        {showLogoutMessage && (
-          <p className="portfolio__logout-message">
-            ¡Sesión cerrada correctamente!
-          </p>
         )}
 
         <div className="portfolio__grid">

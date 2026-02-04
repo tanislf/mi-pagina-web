@@ -7,13 +7,43 @@ import Portfolio from "../pages/Portfolio.jsx";
 import ContactForm from "../pages/Contact.jsx";
 import InfoTooltip from "./InfoTooltip/InfoTooltip.jsx";
 import Footer from "../components/Footer/Footer.jsx";
+import AddAdminModal from "./Modal/AddAdminModal.jsx";
+import AdminMessages from "./Modal/AdminMessagesModal.jsx";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getToken, removeToken } from "../utils/token.js";
 
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isTooltipOpen, SetIsTooltipOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
+
+  const [isAdmin, setIsAdmin] = useState(
+    localStorage.getItem("isAdmin") === "true",
+  );
+
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+  const [isMessagesModalOpen, setIsMessagesModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!getToken()) {
+      localStorage.removeItem("isAdmin");
+      setIsAdmin(false);
+    }
+  }, []);
+
+  //cerrar sesión
+  const handleLogout = () => {
+    removeToken();
+    localStorage.removeItem("isAdmin");
+    setIsAdmin(false);
+    setIsMessagesModalOpen(false);
+
+    setShowLogoutMessage(true);
+    setTimeout(() => setShowLogoutMessage(false), 2500);
+  };
 
   return (
     <>
@@ -36,10 +66,39 @@ function App() {
           <Route
             path="/portfolio"
             element={
-              <Portfolio onContactClick={() => setIsContactOpen(true)} />
+              <Portfolio
+                onContactClick={() => setIsContactOpen(true)}
+                isAdmin={isAdmin}
+                onAdminLogin={() => setIsAdminModalOpen(true)}
+                onMessagesClick={() => setIsMessagesModalOpen(true)}
+                onLogout={handleLogout}
+              />
             }
           />
         </Routes>
+
+        {showLogoutMessage && (
+          <p className="portfolio__logout-message">
+            ¡Sesión cerrada correctamente!
+          </p>
+        )}
+
+        <AddAdminModal
+          isOpen={isAdminModalOpen}
+          onClose={() => setIsAdminModalOpen(false)}
+          onSuccess={() => {
+            localStorage.setItem("isAdmin", "true");
+            setIsAdmin(true);
+            setIsAdminModalOpen(false);
+          }}
+        />
+
+        {isAdmin && (
+          <AdminMessages
+            isOpen={isMessagesModalOpen}
+            onClose={() => setIsMessagesModalOpen(false)}
+          />
+        )}
 
         <ContactForm
           isOpen={isContactOpen}

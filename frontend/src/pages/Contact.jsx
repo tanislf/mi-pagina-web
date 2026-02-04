@@ -1,16 +1,30 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Modal from "../components/Modal/Modal";
+import Modal from "../components/Modal/Modal.jsx";
+import ContactSchemaFrontend from "../validators/contact.schema.js";
+import LoaderSmall from "../components/Animations/LoaderDotsSmall.jsx";
+import * as z from "zod";
 
 function ContactForm({ isOpen, onClose, onSuccess, onError }) {
   const [step, setStep] = useState(1);
-  const { register, handleSubmit, setValue, reset } = useForm();
 
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   setValue,
+  //   reset,
+  //   formState: { errors, isSubmitting },
+  // } = useForm({
+  //   resolver: zodResolver(ContactSchemaFrontend),
+  // });
+
+  //pasar a la siguiente pregunta
   const nextStep = (field, value) => {
-    setValue(field, value);
+    setValue(field, value, { shouldValidate: true });
     setStep((prev) => prev + 1);
   };
 
+  //mandar formulario
   const onSubmit = async (data) => {
     try {
       console.log("Datos finales:", data);
@@ -49,7 +63,7 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   <button
                     type="button"
                     className="contact__option"
-                    onClick={() => nextStep("service", "Ilustraci0n")}
+                    onClick={() => nextStep("service", "Ilustración")}
                   >
                     Ilustración
                   </button>
@@ -220,11 +234,12 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
 
                 <div className="contact__grid-inputs">
                   <input
-                    {...register("name", { required: true })}
+                    {...register("name")}
                     type="text"
                     placeholder="Nombre"
-                    className="contact__input"
+                    className={`contact__input ${errors.name ? "error" : ""}`}
                   />
+                  {errors.message && <span>{errors.name.message}</span>}
 
                   <input
                     {...register("phone")}
@@ -232,20 +247,30 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                     placeholder="Número de celular"
                     className="contact__input"
                   />
+                  {errors.message && <span>{errors.phone.message}</span>}
+
                   <input
-                    {...register("email", { required: true })}
+                    {...register("email")}
                     type="text"
                     placeholder="E-mail"
                     className="contact__input contact__input3"
                   />
+                  {errors.message && <span>{errors.email.message}</span>}
+
                   <textarea
                     {...register("message")}
                     type="text"
+                    value={form.message}
                     placeholder="Mensaje"
                     className="contact__input contact__input4"
                   />
-                  <button className="contact__send-button" type="submit">
-                    Enviar
+                  {errors.message && <span>{errors.message.message}</span>}
+
+                  <button
+                    disabled={isSubmitting}
+                    className="contact__send-button"
+                  >
+                    {isSubmitting ? <LoaderSmall /> : "Enviar"}
                   </button>
                   <button
                     className="contact__back-button"

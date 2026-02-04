@@ -127,6 +127,23 @@
   transform: translateY(4px);
 }
 
+.portfolio__messages-button {
+  background-color: black;
+  background-image: url("../images/chat.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.portfolio__messages-button:active {
+  transform: translateY(4px);
+}
+
 .portfolio__works {
   width: 100%;
   max-width: 1200px;
@@ -237,11 +254,18 @@
 }
 
 .portfolio__logout-message {
-  color: green;
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #2ecc71;
+  background: #1e1e1e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeInOut 2.5s ease forwards;
   font-family: "Oswald";
-  text-align: center;
-  margin: 0;
-  padding-bottom: 20px;
 }
 
 .portfolio__add-button .portfolio__grid-description {
