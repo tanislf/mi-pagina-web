@@ -1,39 +1,59 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Modal from "../components/Modal/Modal.jsx";
-import ContactSchemaFrontend from "../validators/contact.schema.js";
+import ContactSchema from "../validators/contact.schema.js";
 import LoaderSmall from "../components/Animations/LoaderDotsSmall.jsx";
-import * as z from "zod";
+import api from "../utils/api.js";
 
 function ContactForm({ isOpen, onClose, onSuccess, onError }) {
   const [step, setStep] = useState(1);
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   setValue,
-  //   reset,
-  //   formState: { errors, isSubmitting },
-  // } = useForm({
-  //   resolver: zodResolver(ContactSchemaFrontend),
-  // });
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(ContactSchema),
+    defaultValues: {
+      service: "",
+      time: "",
+      budget: "",
+      difusion: "",
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
 
-  //pasar a la siguiente pregunta
+  const formValues = watch();
+
+  // pasar a la siguiente pregunta
   const nextStep = (field, value) => {
     setValue(field, value, { shouldValidate: true });
     setStep((prev) => prev + 1);
   };
 
-  //mandar formulario
+  // mandar formulario
   const onSubmit = async (data) => {
     try {
       console.log("Datos finales:", data);
+
+      // usar instancia para enviar datos
+      await api.submitContact(data);
+
       alert("Gracias por tu solicitud");
       reset();
       setStep(1);
       onClose();
       onSuccess();
     } catch (e) {
+      console.error(e);
+      alert(`Error al enviar el formulario: ${e.message}`);
       onError();
     }
   };
@@ -58,6 +78,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
             {step === 1 && (
               <div className="contact__container">
                 <h2 className="contact__header">Cuéntame ¿Qué necesitas?</h2>
+                {errors.service && (
+                  <p className="contact__error">{errors.service.message}</p>
+                )}
 
                 <div className="contact__grid-options">
                   <button
@@ -77,14 +100,14 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   <button
                     type="button"
                     className="contact__option"
-                    onClick={() => nextStep("service", "Fotografia")}
+                    onClick={() => nextStep("service", "Fotografía")}
                   >
                     Fotografía
                   </button>
                   <button
                     type="button"
                     className="contact__option"
-                    onClick={() => nextStep("service", "Edicion")}
+                    onClick={() => nextStep("service", "Edición")}
                   >
                     Edición
                   </button>
@@ -95,6 +118,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
             {step === 2 && (
               <div className="contact__container">
                 <h2 className="contact__header">¿Para cuándo lo necesitas?</h2>
+                {errors.time && (
+                  <p className="contact__error">{errors.time.message}</p>
+                )}
 
                 <div className="contact__grid-options">
                   <button
@@ -107,7 +133,7 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   <button
                     type="button"
                     className="contact__option"
-                    onClick={() => nextStep("time", "Proximo")}
+                    onClick={() => nextStep("time", "Próximo")}
                   >
                     En los siguientes 2 meses
                   </button>
@@ -121,7 +147,7 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   <button
                     type="button"
                     className="contact__option"
-                    onClick={() => nextStep("time", "Relajate")}
+                    onClick={() => nextStep("time", "Relájate")}
                   >
                     No hay prisa
                   </button>
@@ -140,6 +166,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                 <h2 className="contact__header">
                   Genial, ¿Cuál es tu presupuesto estimado?
                 </h2>
+                {errors.budget && (
+                  <p className="contact__error">{errors.budget.message}</p>
+                )}
 
                 <div className="contact__grid-options">
                   <button
@@ -185,6 +214,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                 <h2 className="contact__header">
                   Casi listo, ¿Cómo te enteraste de mi trabajo?
                 </h2>
+                {errors.difusion && (
+                  <p className="contact__error">{errors.difusion.message}</p>
+                )}
 
                 <div className="contact__grid-options">
                   <button
@@ -204,7 +236,7 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   <button
                     type="button"
                     className="contact__option"
-                    onClick={() => nextStep("difusion", "Recomendacion")}
+                    onClick={() => nextStep("difusion", "Recomendación")}
                   >
                     Recomendación
                   </button>
@@ -233,42 +265,71 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                 </h2>
 
                 <div className="contact__grid-inputs">
-                  <input
-                    {...register("name")}
-                    type="text"
-                    placeholder="Nombre"
-                    className={`contact__input ${errors.name ? "error" : ""}`}
-                  />
-                  {errors.message && <span>{errors.name.message}</span>}
+                  <div className="contact__field">
+                    <input
+                      {...register("name")}
+                      type="text"
+                      placeholder="Nombre"
+                      className={`contact__input ${errors.name ? "error" : ""}`}
+                    />
+                    {errors.name && (
+                      <span className="contact__error-message">
+                        {errors.name.message}
+                      </span>
+                    )}
+                  </div>
 
-                  <input
-                    {...register("phone")}
-                    type="text"
-                    placeholder="Número de celular"
-                    className="contact__input"
-                  />
-                  {errors.message && <span>{errors.phone.message}</span>}
+                  <div className="contact__field">
+                    <input
+                      {...register("phone")}
+                      type="text"
+                      placeholder="Número de celular"
+                      className={`contact__input ${
+                        errors.phone ? "error" : ""
+                      }`}
+                    />
+                    {errors.phone && (
+                      <span className="contact__error-message">
+                        {errors.phone.message}
+                      </span>
+                    )}
+                  </div>
 
-                  <input
-                    {...register("email")}
-                    type="text"
-                    placeholder="E-mail"
-                    className="contact__input contact__input3"
-                  />
-                  {errors.message && <span>{errors.email.message}</span>}
+                  <div className="contact__field">
+                    <input
+                      {...register("email")}
+                      type="email"
+                      placeholder="E-mail"
+                      className={`contact__input contact__input3 ${
+                        errors.email ? "error" : ""
+                      }`}
+                    />
+                    {errors.email && (
+                      <span className="contact__error-message">
+                        {errors.email.message}
+                      </span>
+                    )}
+                  </div>
 
-                  <textarea
-                    {...register("message")}
-                    type="text"
-                    value={form.message}
-                    placeholder="Mensaje"
-                    className="contact__input contact__input4"
-                  />
-                  {errors.message && <span>{errors.message.message}</span>}
+                  <div className="contact__field">
+                    <textarea
+                      {...register("message")}
+                      placeholder="Mensaje"
+                      className={`contact__input contact__input4 ${
+                        errors.message ? "error" : ""
+                      }`}
+                    />
+                    {errors.message && (
+                      <span className="contact__error-message">
+                        {errors.message.message}
+                      </span>
+                    )}
+                  </div>
 
                   <button
                     disabled={isSubmitting}
                     className="contact__send-button"
+                    type="submit"
                   >
                     {isSubmitting ? <LoaderSmall /> : "Enviar"}
                   </button>

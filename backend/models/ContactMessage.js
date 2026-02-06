@@ -10,7 +10,7 @@ const contactMessageSchema = new mongoose.Schema(
 
     time: {
       type: String,
-      enum: ["Urgente", "Proximo", "Hay tiempo", "Relajate"],
+      enum: ["Urgente", "Próximo", "Hay tiempo", "Relájate"],
       required: true,
     },
 
@@ -22,7 +22,7 @@ const contactMessageSchema = new mongoose.Schema(
 
     difusion: {
       type: String,
-      enum: ["Redes", "Linkedin", "Recomendacion", "Otro"],
+      enum: ["Redes", "Linkedin", "Recomendación", "Otro"],
       required: true,
     },
 

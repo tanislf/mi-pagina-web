@@ -1,11 +1,14 @@
-export const validate = (schema) => (req, res, nest) => {
+export const validate = (schema) => (req, res, next) => {
   try {
     schema.parse(req.body);
     next();
   } catch (error) {
     return res.status(400).json({
       message: "Datos inválidos",
-      errors: error.errors,
+      errors: error.errors.map((err) => ({
+        field: err.path[0],
+        message: err.message,
+      })),
     });
   }
 };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import auth from "../middlewares/auth.js";
+import { auth, isAdmin } from "../middlewares/auth.js";
 import {
   getAllMessages,
   markMessageAsRead,
@@ -8,11 +8,11 @@ import {
 const router = Router();
 
 //listar mensajes
-router.get("/", auth, getAllMessages);
+router.get("/", auth, isAdmin, getAllMessages);
 
 //marcar como leído
-router.patch("/:id/read", auth, markMessageAsRead);
+router.patch("/:id", auth, isAdmin, markMessageAsRead);
 
 export default router;
 
-//REVISION
+//REVISIÓN

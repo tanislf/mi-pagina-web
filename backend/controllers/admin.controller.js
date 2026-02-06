@@ -1,32 +1,37 @@
 import ContactMessage from "../models/ContactMessage.js";
 
-//obtener todos los mensajes
-export const getAllMessages = async (req, res) => {
+// obtener todos los mensajes
+export const getAllMessages = async (req, res, next) => {
   try {
-    const message = (await ContactMessage.find()).toSorted({ createdAt: -1 });
+    const messages = await ContactMessage.find().sort({ createdAt: -1 });
 
-    res.json(message);
+    res.json(messages);
   } catch (error) {
-    res.status(500).json({
-      error: "Error al obtener mensajes",
-    });
+    next(error);
   }
 };
 
-//marcar mensajes como leído
-export const markMessageAsRead = async (req, res) => {
+// marcar mensajes como leído
+export const markMessageAsRead = async (req, res, next) => {
   try {
-    await ContactMessage.findByIdAndUpdate(req.params.id, {
-      status: "leido",
-    });
+    const updatedMessage = await ContactMessage.findByIdAndUpdate(
+      req.params.id,
+      { status: "leido" },
+      { new: true },
+    );
+
+    if (!updatedMessage) {
+      return res.status(404).json({
+        error: "Mensaje no encontrado",
+      });
+    }
 
     res.json({
       message: "Mensaje marcado como leído",
+      data: updatedMessage,
     });
   } catch (error) {
-    res.status(500).json({
-      error: "Error al actualizar mensaje",
-    });
+    next(error);
   }
 };
 

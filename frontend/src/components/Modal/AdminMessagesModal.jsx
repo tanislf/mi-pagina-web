@@ -18,6 +18,17 @@ function AdminMessages({ isOpen, onClose }) {
       .finally(() => setLoading(false));
   }, [isOpen]);
 
+  const handleMarkAsRead = async (id) => {
+    try {
+      await api.markMessageAsRead(id);
+      setMessages((prev) =>
+        prev.map((msg) => (msg._id === id ? { ...msg, status: "leido" } : msg)),
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -45,6 +56,14 @@ function AdminMessages({ isOpen, onClose }) {
               <footer className="admin-messages__footer">
                 <span className="admin-messages__text">{msg.email}</span>
                 <span>{new Date(msg.createdAt).toLocaleDateString()}</span>
+
+                <button
+                  className="admin-messages__mark-btn"
+                  onClick={() => handleMarkAsRead(msg._id)}
+                  disabled={msg.status !== "nuevo"}
+                >
+                  Marcar como leído
+                </button>
               </footer>
             </li>
           ))}

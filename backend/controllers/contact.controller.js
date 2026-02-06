@@ -1,30 +1,18 @@
 import ContactMessage from "../models/ContactMessage.js";
-import { ContactSchema } from "../models/Contact.js";
 
 //Guardar mensajes
-const createContactMessage = async (req, res) => {
+const createContactMessage = async (req, res, next) => {
   try {
-    const data = ContactSchema.parse(req.body);
-
-    await ContactMessage.create(data);
+    const newMessage = await ContactMessage.create(req.body);
 
     res.status(201).json({
       message: "Mensaje enviado correctamente",
+      data: newMessage,
     });
   } catch (error) {
-    if (error.name === "ZodError") {
-      return res.status(400).json({
-        errors: error.errors.map((err) => ({
-          field: err.path[0],
-          message: err.message,
-        })),
-      });
-    }
+    next(error);
   }
-
-  res.status(500).json({ error: "Error del servidor" });
 };
-
 export default createContactMessage;
 
 //REVISIÓN

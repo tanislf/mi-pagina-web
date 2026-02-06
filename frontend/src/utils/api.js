@@ -61,8 +61,26 @@ class Api {
 
   //mostrar mensajes
   getMessages() {
-    return fetch(`${this.baseUrl}/auth/admin/messages`, {
+    return fetch(`${this.baseUrl}/admin/`, {
+      headers: this._getHeaders({ auth: true }),
+    }).then(this._checkResponse);
+  }
+
+  // marcar mensaje como leído
+  markMessageAsRead(id) {
+    return fetch(`${this.baseUrl}/admin/${id}`, {
+      method: "PATCH",
+      headers: this._getHeaders({ auth: true }),
+      body: JSON.stringify({ status: "leido" }),
+    }).then(this._checkResponse);
+  }
+
+  //Enviar mensaje de contacto
+  submitContact(data) {
+    return fetch(`${this.baseUrl}/api/contact`, {
+      method: "POST",
       headers: this._getHeaders(),
+      body: JSON.stringify(data),
     }).then(this._checkResponse);
   }
 
