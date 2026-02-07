@@ -1,6 +1,6 @@
 import Modal from "./Modal";
 
-function DeleteProject({ isOpen, onClose, onConfirm }) {
+function DeleteMessage({ isOpen, onClose, onConfirm }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onConfirm();
@@ -9,9 +9,7 @@ function DeleteProject({ isOpen, onClose, onConfirm }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <form className="delete__form" onSubmit={handleSubmit}>
-        <p className="delete__text">
-          ¿Segura que quieres eliminar el proyecto?
-        </p>
+        <p className="delete__text">¿Segura que quieres eliminar el mensaje?</p>
 
         <div className="delete__buttons">
           <button className="delete__button" type="submit">
@@ -26,4 +24,4 @@ function DeleteProject({ isOpen, onClose, onConfirm }) {
   );
 }
 
-export default DeleteProject;
+export default DeleteMessage;

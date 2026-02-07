@@ -52,11 +52,31 @@
 .contact__grid-inputs {
   display: grid;
   grid-template-columns: repeat(2, 350px);
-  grid-template-rows: repeat(5, 40px);
-  grid-gap: 20px;
+  grid-template-rows: repeat(auto, auto, auto);
+  grid-gap: 25px;
+}
+
+.contact__field {
+  width: 100%;
+  height: 40px;
+}
+
+.contact__field3 {
+  width: 100%;
+  height: 50px;
+  grid-column: 1/3;
+}
+
+.contact__field4 {
+  width: 100%;
+  height: 140px;
+  grid-column: 1/3;
+  grid-row: 3/6;
 }
 
 .contact__input {
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   align-content: center;
   font-size: 15px;
@@ -65,12 +85,17 @@
 }
 
 .contact__input3 {
-  grid-column: 1/3;
+  height: 100%;
 }
 
 .contact__input4 {
-  grid-column: 1/3;
-  grid-row: 3/6;
+  height: 100%;
+}
+.contact__error-message {
+  color: red;
+  font-size: 12px;
+  font-family: "oswald";
+  margin: 5px 0;
 }
 
 .contact__option {
@@ -148,6 +173,9 @@
 }
 
 .contact__send-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: black;
   color: white;
   font-size: 15px;

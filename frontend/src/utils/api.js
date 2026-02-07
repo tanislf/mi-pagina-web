@@ -9,8 +9,7 @@ class Api {
   _getHeaders({ auth = false, isFormData = false } = {}) {
     const headers = {};
 
-    const token = getToken();
-    console.log("TOKEN SENT:", token);
+    // const token = getToken();
 
     if (!isFormData) {
       headers["Content-Type"] = "application/json";
@@ -66,7 +65,7 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  // marcar mensaje como leído
+  // marcar mensaje como leido
   markMessageAsRead(id) {
     return fetch(`${this.baseUrl}/admin/${id}`, {
       method: "PATCH",
@@ -105,6 +104,14 @@ class Api {
   //Borrar un proyecto
   deleteProject(id) {
     return fetch(`${this.baseUrl}/portfolio/${id}`, {
+      method: "DELETE",
+      headers: this._getHeaders({ auth: true }),
+    }).then(this._checkResponse);
+  }
+
+  //Borrar un mensaje de contacto
+  deleteMessage(id) {
+    return fetch(`${this.baseUrl}/admin/${id}`, {
       method: "DELETE",
       headers: this._getHeaders({ auth: true }),
     }).then(this._checkResponse);

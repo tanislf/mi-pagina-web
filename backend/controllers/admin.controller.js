@@ -1,7 +1,7 @@
 import ContactMessage from "../models/ContactMessage.js";
 
 // obtener todos los mensajes
-export const getAllMessages = async (req, res, next) => {
+export async function getAllMessages(req, res, next) {
   try {
     const messages = await ContactMessage.find().sort({ createdAt: -1 });
 
@@ -9,10 +9,10 @@ export const getAllMessages = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+}
 
-// marcar mensajes como leído
-export const markMessageAsRead = async (req, res, next) => {
+// marcar mensajes como leido
+export async function markMessageAsRead(req, res, next) {
   try {
     const updatedMessage = await ContactMessage.findByIdAndUpdate(
       req.params.id,
@@ -27,12 +27,29 @@ export const markMessageAsRead = async (req, res, next) => {
     }
 
     res.json({
-      message: "Mensaje marcado como leído",
+      message: "Mensaje marcado como leido",
       data: updatedMessage,
     });
   } catch (error) {
     next(error);
   }
-};
+}
 
-//REVISION
+// borrar mensaje
+export async function deleteMessage(req, res, next) {
+  try {
+    const { id } = req.params;
+
+    const deletedMessage = await ContactMessage.findByIdAndDelete(id);
+
+    if (!deletedMessage) {
+      return res.status(404).json({ error: "Mensaje no encontrado" });
+    }
+
+    await deletedMessage.deleteOne();
+
+    res.json({ message: "Mensaje eliminado", data: deletedMessage });
+  } catch (error) {
+    next(error);
+  }
+}

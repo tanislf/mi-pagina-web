@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import api from "../../utils/api.js";
 import Modal from "./Modal.jsx";
 import Loader from "../Animations/LoaderDots.jsx";
+import DeleteMessage from "./DeleteMessageModal.jsx";
 
 function AdminMessages({ isOpen, onClose }) {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [messageToDelete, setMessageToDelete] = useState(null);
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -18,6 +22,13 @@ function AdminMessages({ isOpen, onClose }) {
       .finally(() => setLoading(false));
   }, [isOpen]);
 
+  //cerrar modal de borrar mensaje
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setMessageToDelete(null);
+  };
+
+  //marcar mensajes como leidos
   const handleMarkAsRead = async (id) => {
     try {
       await api.markMessageAsRead(id);
@@ -29,10 +40,30 @@ function AdminMessages({ isOpen, onClose }) {
     }
   };
 
+  //borrar mensajes
+  const handleDelete = async () => {
+    if (!messageToDelete) return;
+
+    try {
+      await api.deleteMessage(messageToDelete);
+      setMessages((prev) => prev.filter((msg) => msg._id !== messageToDelete));
+      closeDeleteModal();
+    } catch (err) {
+      console.error("Error al eliminar mensaje:", err);
+      alert(`Error al eliminar el mensaje: ${err.message}`);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
+      <DeleteMessage
+        isOpen={isDeleteModalOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleDelete}
+      />
+
       <div className="admin-messages">
         <h2 className="admin-messages__title"> Mensajes de contacto</h2>
 
@@ -46,7 +77,7 @@ function AdminMessages({ isOpen, onClose }) {
             <li key={msg._id} className={`message message--${msg.status}`}>
               <header className="admin-messages__header">
                 <h4 className="admin-messages__name">
-                  {msg.message} - {msg.service}
+                  {msg.name} - {msg.service} - {msg.budget} - {msg.difusion}
                 </h4>
                 <span className="admin-messages__status">{msg.status}</span>
               </header>
@@ -54,16 +85,41 @@ function AdminMessages({ isOpen, onClose }) {
               <p className="admin-messages__text">{msg.message}</p>
 
               <footer className="admin-messages__footer">
-                <span className="admin-messages__text">{msg.email}</span>
-                <span>{new Date(msg.createdAt).toLocaleDateString()}</span>
+                <div className="admin-messages__info">
+                  <span className="admin-messages__text">
+                    <strong>Email:</strong> {msg.email}
+                  </span>
+                  <span className="admin-messages__text">
+                    <strong>Teléfono:</strong> {msg.phone}
+                  </span>
 
-                <button
-                  className="admin-messages__mark-btn"
-                  onClick={() => handleMarkAsRead(msg._id)}
-                  disabled={msg.status !== "nuevo"}
-                >
-                  Marcar como leído
-                </button>
+                  <span className="admin-messages__text">
+                    <strong>Fecha:</strong>{" "}
+                    {new Date(msg.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+
+                <div className="admin-messages__buttons">
+                  <button
+                    type="button"
+                    className="admin-messages__button"
+                    onClick={() => handleMarkAsRead(msg._id)}
+                    disabled={msg.status !== "nuevo"}
+                  >
+                    Marcar como leído
+                  </button>
+
+                  <button
+                    type="button"
+                    className="admin-messages__button"
+                    onClick={() => {
+                      setMessageToDelete(msg._id);
+                      setIsDeleteModalOpen(true);
+                    }}
+                  >
+                    Borrar mensaje
+                  </button>
+                </div>
               </footer>
             </li>
           ))}

@@ -272,6 +272,7 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                       placeholder="Nombre"
                       className={`contact__input ${errors.name ? "error" : ""}`}
                     />
+
                     {errors.name && (
                       <span className="contact__error-message">
                         {errors.name.message}
@@ -295,12 +296,12 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                     )}
                   </div>
 
-                  <div className="contact__field">
+                  <div className="contact__field3">
                     <input
                       {...register("email")}
                       type="email"
                       placeholder="E-mail"
-                      className={`contact__input contact__input3 ${
+                      className={`contact__input contact__input3  ${
                         errors.email ? "error" : ""
                       }`}
                     />
@@ -311,7 +312,7 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                     )}
                   </div>
 
-                  <div className="contact__field">
+                  <div className="contact__field4">
                     <textarea
                       {...register("message")}
                       placeholder="Mensaje"
