@@ -2,7 +2,10 @@ import { getToken } from "./token.js";
 
 class Api {
   constructor({ baseUrl }) {
-    this.baseUrl = baseUrl;
+    this.baseUrl = import.meta.env.PROD
+      ? "https://mi-pagina-web-backend.onrender.com"
+      : baseUrl;
+    // this.baseUrl = baseUrl;
   }
 
   //headers dinámicos
@@ -122,5 +125,10 @@ class Api {
 const api = new Api({
   baseUrl: "http://localhost:3000",
 });
+
+// //instancia para llamar a las apis
+// const api = new Api({
+//   baseUrl: "http://localhost:3000",
+// });
 
 export default api;
