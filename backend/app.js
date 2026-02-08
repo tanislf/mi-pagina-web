@@ -8,8 +8,8 @@ import errorHandler from "./middlewares/errorHandler.js";
 
 const app = express();
 
-// app.use(cors());
-app.use(cors({ origin: "*" }));
+app.use(cors());
+// app.use(cors({ origin: "https://tanislf.github.io" }));
 app.use(express.json());
 
 app.use("/auth", authRoute);
