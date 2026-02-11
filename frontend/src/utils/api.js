@@ -126,9 +126,9 @@ const api = new Api({
   baseUrl: "http://localhost:3000",
 });
 
+export default api;
+
 // //instancia para llamar a las apis
 // const api = new Api({
 //   baseUrl: "http://localhost:3000",
 // });
-
-export default api;
