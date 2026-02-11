@@ -3,7 +3,7 @@ import { getToken } from "./token.js";
 class Api {
   constructor({ baseUrl }) {
     this.baseUrl = import.meta.env.PROD
-      ? "https://mi-pagina-web-backend.onrender.com"
+      ? "https://mi-pagina-web-8jya.onrender.com"
       : baseUrl;
     // this.baseUrl = baseUrl;
   }
