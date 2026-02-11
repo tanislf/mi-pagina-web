@@ -8,8 +8,35 @@ import errorHandler from "./middlewares/errorHandler.js";
 
 const app = express();
 
-app.use(cors());
-// app.use(cors({ origin: "https://tanislf.github.io" }));
+// Orígenes permitidos
+const defaultAllowedCors = [
+  "https://tripleten.tk",
+  "http://tripleten.tk",
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://tanisaround.jumpingcrab.com",
+  "https://www.tanisaround.jumpingcrab.com",
+];
+
+const allowedCors = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",").map((s) => s.trim())
+  : defaultAllowedCors;
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedCors.includes(origin)) return callback(null, true);
+    return callback(new Error("CORS policy: origin not allowed"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use("/auth", authRoute);

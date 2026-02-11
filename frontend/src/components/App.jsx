@@ -9,6 +9,7 @@ import InfoTooltip from "./InfoTooltip/InfoTooltip.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import AddAdminModal from "./Modal/AddAdminModal.jsx";
 import AdminMessages from "./Modal/AdminMessagesModal.jsx";
+import ServicesModal from "./Modal/ServicesModal.jsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -19,6 +20,7 @@ function App() {
   const [isTooltipOpen, SetIsTooltipOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
+  const [isServicesModalOpen, setIsServicesModalOpen] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState(
     localStorage.getItem("isAdmin") === "true",
@@ -48,7 +50,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar onContactClick={() => setIsContactOpen(true)} />
+        <Navbar
+          onContactClick={() => setIsContactOpen(true)}
+          onServicesClick={() => setIsServicesModalOpen(true)}
+        />
+        <ServicesModal
+          isOpen={isServicesModalOpen}
+          onClose={() => setIsServicesModalOpen(false)}
+        />
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -118,7 +127,7 @@ function App() {
           isSuccess={isSuccess}
           onClose={() => SetIsTooltipOpen(false)}
         />
-        <Footer />
+        <Footer onContactClick={() => setIsContactOpen(true)} />
       </BrowserRouter>
     </>
   );

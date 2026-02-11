@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import meCartoon from "../../images/imagen-personal.png";
+import IllustrationCard from "../../components/Animations/IllustrationGrid.jsx";
+import WebCard from "../../components/Animations/WebGrid.jsx";
 
 function Design({ onContactClick }) {
   return (
@@ -70,13 +71,13 @@ function Design({ onContactClick }) {
         </div>
 
         <div className="design__illustration-grid">
-          <img src={meCartoon} className="design__illustration-image" />
+          <IllustrationCard />
         </div>
       </section>
 
       <section className="design__web">
-        <div className="design__web-grid">
-          <img src="" className="design__web-image" />
+        <div className="design__illustration-grid">
+          <WebCard />
         </div>
 
         <div className="design__web-container">

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import yo from "../images/mifoto.webp";
+
 function About() {
   return (
     <section className="about">
@@ -25,6 +27,18 @@ function About() {
             Me he desarrollado como freelancer en ilustración y fotografía
             durante 3 años. Si te gusta mi trabajo, será un placer crear algo
             juntos.
+            <div className="about__programs">
+              <h2 className="about__programs-title">Programas que manejo</h2>
+              <div className="about__buttons">
+                <button className="about__button about__button_photoshop" />
+                <button className="about__button about__button_lightroom" />
+                <button className="about__button about__button_illustrator" />
+                <button className="about__button about__button_indesign" />
+                <button className="about__button about__button_rhino" />
+                <button className="about__button about__button_solid" />
+                <button className="about__button about__button_vsc" />
+              </div>
+            </div>
             <p className="about__description">
               <Link to="/portfolio" className="about__link">
                 ¡Date una vuelta por mi portafolio!
@@ -32,6 +46,10 @@ function About() {
             </p>
           </p>
         </p>
+      </div>
+
+      <div className="about__me-image-container">
+        <img className="about__me-image" src={yo} alt="Imagen de calle" />
       </div>
     </section>
   );

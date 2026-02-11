@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import CircularGallery from "../../components/Animations/CircularGallery";
+import PhotohraphyCard from "../../components/Animations/PhotographyGrid";
+import EditionCard from "../../components/Animations/EditionGrid";
 
 function Photography({ onContactClick }) {
   return (
@@ -65,13 +66,7 @@ function Photography({ onContactClick }) {
         </div>
 
         <div className="photography__grid">
-          <CircularGallery
-            bend={0.7}
-            textColor="#ffffff"
-            borderRadius={0.05}
-            scrollEase={0.02}
-            scrollSpeed={1.9}
-          />
+          <PhotohraphyCard />
         </div>
       </section>
 
@@ -91,10 +86,37 @@ function Photography({ onContactClick }) {
             ¿El resultado? fotos limpias, atractivas y listas para destacar en
             cualquier formato, sin perder naturalidad ni personalidad.
           </p>
+
+          <div className="photography__buttons">
+            <Link
+              to="https://www.instagram.com/tania.lofier/"
+              className="photography__link-button"
+            >
+              <button className="photography__button photography__button_insta" />
+            </Link>
+
+            <Link
+              to="https://www.linkedin.com/in/tania-lópez-fierros-216682345/"
+              className="photography__link-button"
+            >
+              <button className="photography__button photography__button_linkedin" />
+            </Link>
+
+            <Link
+              to="https://www.behance.net/tanialopez29"
+              className="photography__link-button"
+            >
+              <button className="photography__button photography__button_behance" />
+            </Link>
+
+            <Link to="" className="photography__link-button">
+              <button className="photography__button photography__button_mail" />
+            </Link>
+          </div>
         </div>
 
         <div className="photography__edition-grid">
-          <img src="" className="photography__edition-image" />
+          <EditionCard />
         </div>
       </section>
     </>

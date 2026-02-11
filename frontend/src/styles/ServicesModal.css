@@ -1,0 +1,29 @@
+.services-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.services-modal__button {
+  padding: 10px 20px;
+  background-color: turquoise;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  width: 300px;
+  border: 2px solid black;
+}
+
+.services-modal__button:hover {
+  background-color: #fff;
+  color: black;
+}

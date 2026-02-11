@@ -35,6 +35,7 @@ function Home() {
       </h1>
 
       <p className="home__subtitle">Si puedes soñarlo puedes crearlo.</p>
+      <p className="home__location">Oaxaca, Oax. México.</p>
 
       <div className="home__buttons">
         <Link to="/design" className="home__link-button">

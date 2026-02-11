@@ -11,15 +11,19 @@ function Navbar({ onContactClick }) {
       </div>
 
       <div className="navbar__nav">
-        <Link to="/" className="navbar__link">
-          Servicios
+        <Link to="/about" className="navbar__link">
+          Sobre mí
+        </Link>
+        <Link to="/design" className="navbar__link">
+          Diseño
+        </Link>
+        <Link to="/photography" className="navbar__link">
+          Fotografía
         </Link>
         <Link to="/portfolio" className="navbar__link">
           Portafolio
         </Link>
-        <Link to="/about" className="navbar__link">
-          Sobre mí
-        </Link>
+
         <button type="button" className="navbar__link" onClick={onContactClick}>
           Contacto
         </button>
