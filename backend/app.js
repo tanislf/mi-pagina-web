@@ -16,7 +16,8 @@ const defaultAllowedCors = [
   "http://localhost:3001",
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-  "https://tanisaround.github.io",
+  "https://tanislf.github.io",
+  "https://tanialopezmoretz.github.io",
 ];
 
 const allowedCors = process.env.ALLOWED_ORIGINS

@@ -2,9 +2,7 @@ import { getToken } from "./token.js";
 
 class Api {
   constructor({ baseUrl }) {
-    this.baseUrl = import.meta.env.PROD
-      ? "https://mi-pagina-web-8jya.onrender.com"
-      : baseUrl;
+    this.baseUrl = import.meta.env.VITE_API_URL || baseUrl;
     // this.baseUrl = baseUrl;
   }
 
@@ -127,8 +125,3 @@ const api = new Api({
 });
 
 export default api;
-
-// //instancia para llamar a las apis
-// const api = new Api({
-//   baseUrl: "http://localhost:3000",
-// });
