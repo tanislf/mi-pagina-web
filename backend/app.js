@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import portfolioRoute from "./routes/portfolio.routes.js";
 import authRoute from "./routes/auth.routes.js";
 import contactRoute from "./routes/contact.routes.js";
@@ -9,7 +8,7 @@ import errorHandler from "./middlewares/errorHandler.js";
 const app = express();
 
 // Orígenes permitidos
-const defaultAllowedCors = [
+const allowedCors = [
   "https://tripleten.tk",
   "http://tripleten.tk",
   "http://localhost:3000",
@@ -20,22 +19,31 @@ const defaultAllowedCors = [
   "https://tanialopezmoretz.github.io",
 ];
 
-const allowedCors = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",").map((s) => s.trim())
-  : defaultAllowedCors;
+app.use(function (req, res, next) {
+  const { origin } = req.headers;
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedCors.includes(origin)) return callback(null, true);
-    return callback(new Error("CORS policy: origin not allowed"));
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
+  // Verificar si el origen está en la lista permitida
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
 
-app.use(cors(corsOptions));
+  // Permitir métodos HTTP necesarios
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+
+  // Permitir encabezados necesarios
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  );
+
+  // Manejar solicitudes preflight OPTIONS
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+    return;
+  }
+
+  next();
+});
 
 app.use(express.json());
 
