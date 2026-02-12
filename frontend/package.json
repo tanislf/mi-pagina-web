@@ -9,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build &&  sudo cp -r dist/* /home/tanialopezmoretz/frontendvirt",
     "test": "jest",
     "start": "node server.js"
   },
