@@ -220,6 +220,14 @@ function Portfolio({
                 </div>
 
                 <p className="portfolio__grid-text">{project.description}</p>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="portfolio__grid-link"
+                >
+                  {project.link}
+                </a>
               </div>
             ))}
         </div>
