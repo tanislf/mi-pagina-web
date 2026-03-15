@@ -13,6 +13,7 @@ export async function getProjects(req, res) {
 
     res.status(200).json(projects);
   } catch (error) {
+    console.error("GET PROJECTS ERROR:", error);
     res.status(500).json({ message: "Error al obtener proyectos" });
   }
 }
