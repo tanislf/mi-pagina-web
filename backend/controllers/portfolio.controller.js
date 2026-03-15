@@ -11,7 +11,6 @@ export async function getProjects(req, res) {
       .sort({
         createdAt: -1,
       })
-      .limit(10)
       .lean();
 
     res.status(200).json(projects);
