@@ -7,9 +7,12 @@ export async function getProjects(req, res) {
 
     const filter = category ? { category } : {};
 
-    const projects = await Portfolio.find(filter).sort({
-      createdAt: -1,
-    });
+    const projects = await Portfolio.find(filter)
+      .sort({
+        createdAt: -1,
+      })
+      .limit(20)
+      .lean();
 
     res.status(200).json(projects);
   } catch (error) {
