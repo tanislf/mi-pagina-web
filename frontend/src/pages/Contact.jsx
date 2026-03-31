@@ -327,18 +327,20 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                     )}
                   </div>
 
-                  <button
-                    disabled={isSubmitting}
-                    className="contact__send-button"
-                    type="submit"
-                  >
-                    {isSubmitting ? <LoaderSmall /> : "Enviar"}
-                  </button>
-                  <button
-                    className="contact__back-button"
-                    type="button"
-                    onClick={() => setStep(4)}
-                  />
+                  <div className="contact__bottom-row">
+                    <button
+                      disabled={isSubmitting}
+                      className="contact__send-button"
+                      type="submit"
+                    >
+                      {isSubmitting ? <LoaderSmall /> : "Enviar"}
+                    </button>
+                    <button
+                      className="contact__back-button"
+                      type="button"
+                      onClick={() => setStep(4)}
+                    />
+                  </div>
                 </div>
               </div>
             )}

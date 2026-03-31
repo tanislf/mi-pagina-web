@@ -1,0 +1,698 @@
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem; /* menos padding lateral en pantallas pequeñas */
+  }
+
+  body,
+  html {
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Animación X al abrir */
+  .navbar__toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .navbar__toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar__toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── BREAKPOINT MÓVIL (≤ 768px) ────────────────────────────── */
+  .navbar {
+    height: 70px; /* navbar más compacta */
+    margin: 10px 10px 0;
+    position: relative; /* ancla el menú desplegable */
+  }
+
+  .navbar__creator {
+    height: 70px;
+    gap: 16px;
+  }
+
+  .navbar__logo {
+    width: 90px; /* logo más pequeño en móvil */
+  }
+
+  /* Mostrar hamburguesa */
+  .navbar__toggle {
+    display: flex;
+  }
+
+  /* Menú oculto por defecto en móvil */
+  .navbar__nav {
+    display: none;
+    position: absolute;
+    top: 100%; /* justo debajo del navbar */
+    left: -20px; /* compensa el padding del navbar */
+    right: -20px;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 16px 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 0 0 16px 16px;
+    z-index: 100;
+  }
+
+  /* Menú abierto */
+  .navbar__nav.navbar__nav--open {
+    display: flex;
+  }
+
+  /* Links más cómodos para toque */
+  .navbar__link {
+    font-size: 17px;
+    padding: 14px 32px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .navbar__link:last-child {
+    border-bottom: none;
+  }
+
+  /* Evitar que el hover levante los links en móvil */
+  .navbar__link:hover {
+    transform: none;
+    color: turquoise;
+  }
+
+  .home__title {
+    font-size: clamp(72px, 20vw, 130px); /* escala fluida según el ancho */
+    line-height: clamp(52px, 14vw, 90px);
+    text-align: center;
+  }
+
+  .home__subtitle {
+    font-size: clamp(22px, 6vw, 34px);
+    margin: 18px 0;
+    text-align: center;
+  }
+
+  .home__location {
+    font-size: 15px;
+    text-align: center;
+    margin: 0 16px 20px;
+  }
+
+  .home__buttons {
+    flex-direction: column; /* botones apilados en móvil */
+    align-items: center;
+    gap: 16px;
+  }
+
+  .home__button {
+    width: 260px; /* un poco más anchos para facilitar el toque */
+    height: 48px;
+    font-size: 18px;
+  }
+
+  /* Layout vertical: imagen arriba, texto abajo */
+  .about {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .about__container {
+    width: 100%;
+    margin: auto; /* cada columna ocupa todo el ancho */
+  }
+
+  /* Imagen más compacta y centrada */
+  .about__me-image-container {
+    max-width: 280px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin: 0 auto; /* centrar dentro del container */
+  }
+
+  /* Sin hover de levitar en touch */
+  .about__me-image-container:hover {
+    transform: none;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .about__me {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .about__welcome {
+    font-size: 16px;
+    letter-spacing: 4px; /* menos separación en pantalla angosta */
+    text-align: center;
+  }
+
+  .about__description {
+    font-size: 15px;
+    text-align: left; /* justify puede verse mal en pantallas angostas */
+  }
+
+  .about__programs-title {
+    font-size: 22px;
+  }
+
+  /* Botones de programas: se envuelven si no caben en una fila */
+  .about__buttons {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .design {
+    margin: auto;
+  }
+
+  /* Hero */
+  .design__services {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .design__welcome {
+    font-size: clamp(32px, 10vw, 50px);
+    line-height: 1.1;
+    padding: 0 0 28px;
+  }
+
+  .design__button-contact {
+    width: 240px;
+    font-size: 18px;
+  }
+
+  /* Sección ilustración: columna vertical, imagen abajo */
+  .design__illustration {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 0;
+    gap: 24px;
+  }
+
+  .design__illustration-container {
+    width: 100%;
+  }
+
+  .design__illustration-grid {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .design__illustration-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .design__illustration-header {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .design__text {
+    font-size: 15px;
+    text-align: left; /* justify se ve mal en pantallas angostas */
+  }
+
+  /* Sección web: columna vertical, imagen arriba */
+  .design__web {
+    flex-direction: column-reverse; /* imagen primero, texto después */
+    align-items: center;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .design__web-container {
+    width: 100%;
+  }
+
+  .design__web-grid {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .design__web-image {
+    max-width: 100%;
+  }
+
+  .design__web-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .design__web-header {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  /* Botones de redes sociales */
+  .design__buttons {
+    height: auto;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* Sin hover de levitar en touch */
+  .design__button:hover {
+    transform: none;
+  }
+
+  /* Sección principal: texto arriba, grid abajo */
+  .photography {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 0;
+    gap: 24px;
+  }
+
+  .photography__container {
+    width: 100%;
+  }
+
+  .photography__grid {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .photography__title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .photography__header {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  /* Sección edición: imagen arriba, texto abajo */
+  .photography__edition {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .photography__edition-container {
+    width: 100%;
+  }
+
+  .photography__edition-grid {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .photography__edition-image {
+    max-width: 100%;
+  }
+
+  .photography__edition-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .photography__edition-header {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .photography__text {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  /* Botones de redes sociales */
+  .photography__buttons {
+    height: auto;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* Sin hover de levitar en touch */
+  .photography__button:hover {
+    transform: none;
+  }
+
+  .portfolio__welcome {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+
+  .portfolio__header {
+    font-size: clamp(32px, 10vw, 50px);
+    line-height: 1.1;
+    padding: 0 20px 28px;
+  }
+
+  .portfolio__button-contact {
+    width: 240px;
+    font-size: 18px;
+  }
+
+  /* Opciones de filtro: centradas y con wrap */
+  .portfolio__options {
+    justify-content: center;
+    padding: 0 20px 32px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .portfolio__options-button {
+    width: 110px;
+    height: 44px;
+    font-size: 14px;
+  }
+
+  /* Botones de acción más compactos */
+  .portfolio__add-button,
+  .portfolio__close-session-button,
+  .portfolio__messages-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Grid de 1 columna en móvil */
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+
+  /* Tarjetas: sin hover de scale en touch */
+  .portfolio__grid-container:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Botones de editar/eliminar siempre visibles en móvil
+     (no hay hover en touch para revelarlos)               */
+  .portfolio__image-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .portfolio__grid-name {
+    font-size: 20px;
+  }
+
+  .portfolio__logout-message {
+    top: 70px;
+    right: 12px;
+    font-size: 0.8rem;
+  }
+
+  .admin__container {
+    width: 90vw; /* en lugar de 400px fijo, ocupa casi todo el ancho */
+    height: auto; /* altura automática según contenido */
+  }
+
+  .admin__button {
+    width: 44%; /* los dos botones se reparten el ancho disponible */
+  }
+
+  .modal__form {
+    width: 90vw; /* evita desbordamiento en pantallas angostas */
+    height: auto; /* crece según el contenido */
+    padding: 24px 20px;
+  }
+
+  .modal__button {
+    width: 44%; /* los dos botones se reparten el ancho disponible */
+  }
+
+  .admin-messages {
+    width: 90vw; /* evita desbordamiento en pantallas angostas */
+    max-height: 85vh; /* un poco más de altura para compensar el ancho menor */
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .admin-messages__title {
+    font-size: 1.4rem;
+  }
+
+  /* El minmax de 320px forzaba una sola columna muy ancha —
+     en móvil lo bajamos para que quepa bien                 */
+  .admin-messages__list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-height: none; /* la altura la controla el modal padre */
+  }
+
+  /* Botones de acción: se reparten el ancho disponible */
+  .admin-messages__buttons {
+    gap: 8px;
+  }
+
+  .admin-messages__button {
+    width: 48%;
+    font-size: 11px;
+  }
+
+  /* Sin hover de levitar en touch */
+  .message:hover {
+    transform: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .editmodal__form {
+    width: 90vw; /* evita desbordamiento en pantallas angostas */
+    max-height: 90vh; /* más altura para acomodar el preview + inputs */
+    overflow-y: auto; /* scroll interno si el contenido no cabe */
+    padding: 16px;
+  }
+
+  .editmodal__preview {
+    max-height: 180px; /* imagen de preview más compacta en móvil */
+  }
+
+  .editmodal__button {
+    width: 44%; /* los dos botones se reparten el ancho disponible */
+  }
+
+  .delete__form {
+    width: 90vw; /* evita desbordamiento en pantallas angostas */
+    height: auto; /* altura automática según contenido */
+  }
+
+  .delete__button {
+    width: 44%; /* los dos botones se reparten el ancho disponible */
+  }
+
+  .contact__modal {
+    display: flex;
+    align-items: center;
+    height: auto; /* altura fija de 600px no cabe en móvil */
+    min-height: 100svh; /* ocupa toda la pantalla disponible */
+    border-radius: 0; /* sin bordes redondeados al ser pantalla completa */
+    padding: 150px 20px 80px; /* espacio para botones absolutos arriba y abajo */
+    justify-content: flex-start;
+  }
+
+  .contact__header {
+    font-size: 28px;
+    margin: 16px 0;
+  }
+
+  /* Opciones de tipo de contacto: 1 columna, ancho completo */
+  .contact__grid-options {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 60px);
+    width: 100%;
+    grid-gap: 12px;
+  }
+
+  /* Grid de inputs: 1 columna, ancho completo */
+  .contact__grid-inputs {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    width: 100%;
+    grid-gap: 16px;
+  }
+
+  /* Campos que antes abarcaban 2 columnas, ahora 1 */
+  .contact__field3,
+  .contact__field4 {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .contact__option {
+    font-size: 16px;
+  }
+
+  .contact .contact__close-button {
+    position: static; /* sale del flujo absoluto */
+    align-self: flex-end; /* se alinea a la derecha dentro del flex column */
+    margin: 0;
+    order: -1; /* aparece primero, arriba del todo */
+  }
+
+  .contact__bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .contact__back-button {
+    position: static;
+    margin: 0;
+  }
+
+  .contact__send-button {
+    position: static;
+    width: auto;
+    padding: 0 24px;
+    margin: 0;
+    font-size: 15px;
+    height: 44px;
+  }
+
+  /* Sin hover de levitar en touch */
+  .contact__close-button:hover,
+  .contact__back-button:hover {
+    transform: none;
+  }
+
+  .footer__nav-container {
+    flex-direction: column; /* apila texto y links verticalmente */
+    align-items: center;
+    justify-content: center;
+    height: auto; /* deja de ser altura fija */
+    width: auto;
+    padding: 24px 20px;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer__text {
+    font-size: 15px;
+  }
+
+  .footer__navbar {
+    flex-wrap: wrap; /* evita que los links se salgan de pantalla */
+    justify-content: center;
+    gap: 16px 24px; /* espacio vertical y horizontal */
+  }
+
+  /* Sin hover de levitar en touch */
+  .footer__link:hover {
+    transform: none;
+  }
+}
+
+/* ── RESPONSIVO TABLET (769px – 1024px) ──────────────────────── */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home__title {
+    font-size: clamp(100px, 14vw, 140px);
+    line-height: clamp(72px, 10vw, 95px);
+  }
+
+  .home__subtitle {
+    font-size: clamp(28px, 4vw, 36px);
+  }
+
+  .home__buttons {
+    gap: 24px;
+  }
+
+  .home__button {
+    width: 180px;
+  }
+
+  .about {
+    gap: 30px;
+  }
+
+  .about__container {
+    width: 45%;
+  }
+
+  .about__me-image-container {
+    max-width: 300px;
+    height: 60vh;
+  }
+
+  .design__welcome {
+    font-size: 48px;
+    line-height: 46px;
+  }
+
+  .design__illustration,
+  .design__web {
+    padding: 0 40px;
+    gap: 30px;
+  }
+
+  .design__web {
+    padding: 60px 40px;
+  }
+
+  .design__illustration-container,
+  .design__web-container {
+    width: 45%;
+  }
+
+  .design__illustration-grid,
+  .design__web-grid {
+    width: 50%;
+  }
+
+  .photography,
+  .photography__edition {
+    padding: 0 40px;
+    gap: 30px;
+  }
+
+  .photography__edition {
+    padding: 60px 40px;
+  }
+
+  .photography__container,
+  .photography__edition-container {
+    width: 45%;
+  }
+
+  .photography__grid,
+  .photography__edition-grid {
+    width: 50%;
+  }
+
+  .portfolio__header {
+    font-size: 48px;
+    line-height: 46px;
+  }
+
+  .portfolio__options {
+    padding: 0 0 40px 40px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Grid de 2 columnas en tablet */
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+  }
+
+  .portfolio__works {
+    padding: 0 20px;
+  }
+}

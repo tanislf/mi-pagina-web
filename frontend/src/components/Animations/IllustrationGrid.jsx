@@ -93,6 +93,43 @@ const StyledWrapper = styled.div`
     object-fit: cover;
     border-radius: inherit;
   }
+
+  /* ── RESPONSIVO TABLET (≤ 1024px) ─────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .container .glass {
+      width: 200px;
+      height: 160px;
+      margin: 0 -35px;
+    }
+  }
+
+  /* ── RESPONSIVO MÓVIL (≤ 768px) ───────────────────────────── */
+
+  @media (max-width: 768px) {
+    /* Las tarjetas se apilan en columna — el efecto de abanico
+       no funciona bien en pantallas angostas                    */
+    .container {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .container .glass {
+      width: 80vw; /* ocupa casi todo el ancho disponible */
+      max-width: 300px;
+      height: 200px;
+      margin: 0; /* sin márgenes negativos en columna   */
+      transform: rotate(0deg) !important; /* sin rotación en móvil  */
+    }
+
+    /* El efecto hover de desplegar ya no aplica en touch,
+       las tarjetas siempre se ven extendidas               */
+    .container:hover .glass {
+      margin: 0;
+    }
+  }
 `;
 
 export default IllustrationCard;
