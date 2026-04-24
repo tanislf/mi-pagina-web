@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
   #root {
-    padding: 0.5rem; /* menos padding lateral en pantallas pequeñas */
+    padding: 1rem; /* menos padding lateral en pantallas pequeñas */
   }
 
   body,
@@ -28,8 +28,14 @@
   }
 
   .navbar__creator {
-    height: 70px;
-    gap: 16px;
+    height: auto;
+    gap: 0;
+  }
+
+  .navbar__logo-caption {
+    font-size: 8px;
+    margin-top: -3px;
+    letter-spacing: 1px;
   }
 
   .navbar__logo {
@@ -83,8 +89,11 @@
   }
 
   .home__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra horizontalmente las líneas */
     font-size: clamp(72px, 20vw, 130px); /* escala fluida según el ancho */
-    line-height: clamp(52px, 14vw, 90px);
+    line-height: 0.8; /* interlineado menor */
     text-align: center;
   }
 
@@ -112,122 +121,147 @@
     font-size: 18px;
   }
 
-  /* Layout vertical: imagen arriba, texto abajo */
   .about {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 32px;
+    padding: 0; /* más margen lateral */
   }
 
   .about__container {
     width: 100%;
-    margin: auto; /* cada columna ocupa todo el ancho */
+    margin: 0;
   }
 
-  /* Imagen más compacta y centrada */
   .about__me-image-container {
-    max-width: 280px;
+    max-width: 300px;
     height: auto;
     aspect-ratio: 4 / 5;
-    margin: 0 auto; /* centrar dentro del container */
-  }
-
-  /* Sin hover de levitar en touch */
-  .about__me-image-container:hover {
-    transform: none;
-    box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.08),
-      0 2px 6px rgba(0, 0, 0, 0.04);
+    margin: 0 auto;
   }
 
   .about__me {
-    font-size: 32px;
+    font-size: 42px;
     text-align: center;
+    margin-bottom: 5px;
   }
 
   .about__welcome {
     font-size: 16px;
-    letter-spacing: 4px; /* menos separación en pantalla angosta */
+    letter-spacing: 4px;
     text-align: center;
+    margin-bottom: 24px;
   }
 
   .about__description {
-    font-size: 15px;
-    text-align: left; /* justify puede verse mal en pantallas angostas */
+    font-size: 16px;
+    text-align: justify; /* texto justificado */
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 
-  .about__programs-title {
-    font-size: 22px;
-  }
-
-  /* Botones de programas: se envuelven si no caben en una fila */
-  .about__buttons {
-    height: auto;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .design {
-    margin: auto;
-  }
-
-  /* Hero */
-  .design__services {
-    font-size: 13px;
-    letter-spacing: 4px;
-    text-align: center;
-  }
-
-  .design__welcome {
-    font-size: clamp(32px, 10vw, 50px);
-    line-height: 1.1;
-    padding: 0 0 28px;
-  }
-
-  .design__button-contact {
-    width: 240px;
-    font-size: 18px;
-  }
-
-  /* Sección ilustración: columna vertical, imagen abajo */
-  .design__illustration {
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px 0;
-    gap: 24px;
-  }
-
-  .design__illustration-container {
-    width: 100%;
-  }
-
-  .design__illustration-grid {
-    width: 100%;
+  .about__socials {
     justify-content: center;
   }
 
-  .design__illustration-title {
-    font-size: 13px;
+  .about__programs {
+    margin: 40px 0;
+  }
+
+  .about__programs-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .about__accordion {
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .about__accordion-header {
+    padding: 15px;
+  }
+
+  .about__program-name {
+    font-size: 17px;
+  }
+
+  .about__accordion-item--open .about__accordion-content {
+    padding: 0 15px 20px 60px;
+  }
+
+  .design-hero,
+  .photography-hero {
+    min-height: 60vh;
+    padding: 40px 0px;
+  }
+
+  .design-hero__services,
+  .photography-hero__services {
+    font-size: 12px;
     letter-spacing: 4px;
     text-align: center;
   }
 
-  .design__illustration-header {
-    font-size: 28px;
+  .design-hero__welcome,
+  .photography-hero__welcome {
+    font-size: clamp(32px, 8vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 30px;
+  }
+
+  .design-hero__button,
+  .photography-hero__button {
+    width: auto;
+    padding: 0 30px;
+    font-size: 18px;
+    height: 50px;
+  }
+
+  /* Secciones de servicios general */
+  .design__illustration,
+  .design__web,
+  .photography,
+  .photography__edition {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    gap: 40px;
+  }
+
+  .design__web,
+  .photography__edition {
+    flex-direction: column-reverse; /* Imagen arriba en secciones alternas */
+  }
+
+  .design__illustration-container,
+  .design__web-container,
+  .photography__container,
+  .photography__edition-container {
+    width: 100%;
+    align-items: center;
     text-align: center;
   }
 
-  .design__text {
-    font-size: 15px;
-    text-align: left; /* justify se ve mal en pantallas angostas */
+  .design__illustration-grid,
+  .design__web-grid,
+  .photography__grid,
+  .photography__edition-grid {
+    width: 100%;
   }
 
-  /* Sección web: columna vertical, imagen arriba */
-  .design__web {
-    flex-direction: column-reverse; /* imagen primero, texto después */
-    align-items: center;
-    padding: 40px 20px;
-    gap: 24px;
+  .design__illustration-header,
+  .design__web-header,
+  .photography__header,
+  .photography__edition-header {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .design__buttons,
+  .photography__buttons {
+    justify-content: center;
+    width: 100%;
   }
 
   .design__web-container {
@@ -330,7 +364,8 @@
 
   .photography__text {
     font-size: 15px;
-    text-align: left;
+    text-align: justify; /* texto justificado */
+    line-height: 1.5;
   }
 
   /* Botones de redes sociales */
@@ -494,34 +529,42 @@
   }
 
   .contact__modal {
-    display: flex;
+    width: 100%;
+    height: 100svh;
+    min-height: -webkit-fill-available;
+    max-height: 100svh;
+    padding: 0;
+    border-radius: 0;
+    justify-content: center;
     align-items: center;
-    height: auto; /* altura fija de 600px no cabe en móvil */
-    min-height: 100svh; /* ocupa toda la pantalla disponible */
-    border-radius: 0; /* sin bordes redondeados al ser pantalla completa */
-    padding: 150px 20px 80px; /* espacio para botones absolutos arriba y abajo */
-    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
+
 
   .contact__header {
     font-size: 28px;
     margin: 16px 0;
   }
 
-  /* Opciones de tipo de contacto: 1 columna, ancho completo */
   .contact__grid-options {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 60px);
-    width: 100%;
-    grid-gap: 12px;
+    grid-template-rows: auto;
+    width: 90%;
+    grid-gap: 20px;
+
+  }
+
+  .contact__text {
+    margin-top: 50px;
   }
 
   /* Grid de inputs: 1 columna, ancho completo */
   .contact__grid-inputs {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    width: 100%;
-    grid-gap: 16px;
+    width: 90%;
+    grid-gap: 20px;
   }
 
   /* Campos que antes abarcaban 2 columnas, ahora 1 */
@@ -533,13 +576,21 @@
 
   .contact__option {
     font-size: 16px;
+    height: 60px;
+    width: 100%;
   }
 
   .contact .contact__close-button {
-    position: static; /* sale del flujo absoluto */
-    align-self: flex-end; /* se alinea a la derecha dentro del flex column */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 35px;
+    width: 35px;
+    background-size: contain;
+    background-color:rgb(214, 214, 214);
+    border-radius: 30px;
     margin: 0;
-    order: -1; /* aparece primero, arriba del todo */
+    z-index: 10;
   }
 
   .contact__bottom-row {
@@ -570,30 +621,38 @@
     transform: none;
   }
 
-  .footer__nav-container {
-    flex-direction: column; /* apila texto y links verticalmente */
+  .footer {
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: auto; /* deja de ser altura fija */
-    width: auto;
-    padding: 24px 20px;
-    gap: 16px;
+    padding: 40px 1rem;
+    margin-left: -1rem; /* padding de root en móvil suele ser menor */
+    margin-right: -1rem;
+    margin-bottom: -1rem;
+  }
+
+  .footer__content {
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 30px;
+  }
+
+  .footer__brand {
     text-align: center;
   }
 
-  .footer__text {
-    font-size: 15px;
+  .footer__nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
 
-  .footer__navbar {
-    flex-wrap: wrap; /* evita que los links se salgan de pantalla */
-    justify-content: center;
-    gap: 16px 24px; /* espacio vertical y horizontal */
-  }
-
-  /* Sin hover de levitar en touch */
   .footer__link:hover {
     transform: none;
+  }
+
+  .footer__bottom {
+    margin-top: 20px;
+    gap: 10px;
   }
 }
 
@@ -601,8 +660,11 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .home__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: clamp(100px, 14vw, 140px);
-    line-height: clamp(72px, 10vw, 95px);
+    line-height: 0.8;
   }
 
   .home__subtitle {
@@ -618,22 +680,34 @@
   }
 
   .about {
-    gap: 30px;
+    gap: 40px;
+    padding: 80px 40px;
+    align-items: flex-start;
   }
 
   .about__container {
-    width: 45%;
+    width: 60%;
+  }
+
+  .about__me {
+    font-size: 48px;
   }
 
   .about__me-image-container {
-    max-width: 300px;
-    height: 60vh;
+    width: 35%;
+    max-width: 320px;
+    height: 450px;
+    top: 100px;
   }
 
   .design__welcome {
     font-size: 48px;
     line-height: 46px;
   }
+
+  .design-hero {
+padding: 0;
+  } 
 
   .design__illustration,
   .design__web {
@@ -675,6 +749,13 @@
     width: 50%;
   }
 
+  .design__text,
+  .photography__text {
+    text-align: justify;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
   .portfolio__header {
     font-size: 48px;
     line-height: 46px;
@@ -694,5 +775,61 @@
 
   .portfolio__works {
     padding: 0 20px;
+  }
+
+  /* Modal de Contacto en Tablet */
+  .contact__modal {
+    width: 90%;
+    max-width: 750px;
+    height: auto;
+    max-height: 85vh;
+    padding: 60px 40px;
+    border-radius: 40px;
+    justify-content: center;
+    gap: 35px;
+    overflow-y: auto;
+  }
+
+  .contact__grid-options,
+  .contact__grid-inputs {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 25px;
+  }
+
+  .contact__header {
+    font-size: 34px;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .contact__back-button,
+  .contact__send-button {
+    margin: 15px;
+  }
+
+  .contact .contact__close-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    margin: 0;
+  }
+
+  .footer {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-bottom: -2rem;
+    padding: 50px 2rem 30px 2rem;
+  }
+
+  .footer__content {
+    padding-bottom: 30px;
+  }
+
+  .footer__nav {
+    gap: 20px;
   }
 }

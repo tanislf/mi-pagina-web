@@ -3,12 +3,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: white;
   border-radius: 50px;
-  width: 100%;
-  height: 600px;
-  padding: 30px;
+  width: 95%;
+  max-width: 800px;
+  height: auto;
+  max-height: 90vh;
+  padding: 40px 30px;
+  overflow-y: auto;
 }
 
 .contact__form {
@@ -22,19 +25,23 @@
   font-size: 15px;
   font-family: "Quicksand";
   margin: 0;
+  text-align: center;
 }
 
 .contact__container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
+  width: 100%;
 }
 
 .contact__header {
   color: black;
   font-size: 40px;
   font-family: "Oswald";
-  margin: 30px 0;
+  margin: 10px 0;
+  text-align: center;
 }
 
 .contact__header_input {
@@ -44,16 +51,20 @@
 
 .contact__grid-options {
   display: grid;
-  grid-template-columns: repeat(2, 350px);
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  max-width: 700px;
   grid-template-rows: repeat(2, 80px);
-  grid-gap: 20px;
+  grid-gap: 30px;
 }
 
 .contact__grid-inputs {
   display: grid;
-  grid-template-columns: repeat(2, 350px);
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  max-width: 700px;
   grid-template-rows: repeat(auto, auto, auto);
-  grid-gap: 25px;
+  grid-gap: 30px;
 }
 
 .contact__field {
@@ -82,6 +93,7 @@
   font-size: 15px;
   font-family: "Quicksand";
   padding-left: 10px;
+  text-align: center;
 }
 
 .contact__input3 {
@@ -204,4 +216,16 @@
 
 .contact__send-button:active {
   transform: translateY(10px);
+}
+
+.contact__privacy {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  line-height: 1.4;
+  opacity: 0.8;
+  padding: 0 20px;
+  font-family: "Oswald", sans-serif;
 }

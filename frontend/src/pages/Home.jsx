@@ -16,6 +16,7 @@ function Home() {
           duration={1}
           ease="power3.out"
           splitType="chars"
+          tag="span"
           from={{ opacity: 0, y: -40 }}
           to={{ opacity: 1, y: 0 }}
           threshold={0.1}
@@ -28,6 +29,7 @@ function Home() {
           text="& fotógrafa."
           className="split-text"
           delay={100}
+          tag="span"
           from={{ opacity: 0, x: -40 }}
           to={{ opacity: 1, x: 0 }}
           staggeDirection={-1}

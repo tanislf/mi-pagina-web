@@ -1,46 +1,93 @@
-.footer__nav-container {
+.footer {
+  background-color: #000;
+  color: #fff;
+  margin-top: 80px;
+  /* El "truco" para saltarse el padding de root */
+  margin-left: -2rem;
+  margin-right: -2rem;
+  margin-bottom: -2rem;
+  padding: 60px 2rem 40px 2rem;
+  font-family: "Quicksand", sans-serif;
+}
+
+.footer__content {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: black;
-  margin: 30px 0 0 0;
-  height: 100px;
-  padding: 0 20px;
-  font-family: "Quicksand";
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 40px;
 }
 
-.footer__text {
-  color: white;
+.footer__brand {
+  text-align: left;
+}
+
+.footer__title {
+  font-size: 32px;
   margin: 0;
-  font-weight: light;
-  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.footer__navbar {
+.footer__subtitle {
+  font-size: 14px;
+  margin: 4px 0 0 0;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+.footer__nav {
   display: flex;
   gap: 30px;
 }
 
 .footer__link {
-  border: none;
-  background: none;
-  cursor: pointer;
+  color: #fff;
   text-decoration: none;
-  color: white;
   font-size: 15px;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
   padding: 0;
-  margin: 0;
-  font-family: "Quicksand";
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .footer__link:hover {
   color: turquoise;
-  transition: all 0.5s;
-  transform: translate(0, -0.4em);
-  box-shadow: 0 0 0 0 #fff;
-  text-decoration: none;
+  transform: translateY(-2px);
 }
 
-.footer__link:not(hover) {
-  transition: all 1s;
+.footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer__bottom {
+  max-width: 1100px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer__privacy {
+  font-size: 12px;
+  color: #999;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer__copyright {
+  font-size: 11px;
+  color: #666;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

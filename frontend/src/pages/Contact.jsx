@@ -151,7 +151,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   >
                     No hay prisa
                   </button>
+                </div>
 
+                <div className="contact__bottom-row">
                   <button
                     className="contact__back-button"
                     type="button"
@@ -199,7 +201,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   >
                     $300+ USD
                   </button>
+                </div>
 
+                <div className="contact__bottom-row">
                   <button
                     className="contact__back-button"
                     type="button"
@@ -247,7 +251,9 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   >
                     Otro
                   </button>
+                </div>
 
+                <div className="contact__bottom-row">
                   <button
                     className="contact__back-button"
                     type="button"
@@ -329,22 +335,26 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
 
                   <div className="contact__bottom-row">
                     <button
+                      className="contact__back-button"
+                      type="button"
+                      onClick={() => setStep(4)}
+                    />
+                    <button
                       disabled={isSubmitting}
                       className="contact__send-button"
                       type="submit"
                     >
                       {isSubmitting ? <LoaderSmall /> : "Enviar"}
                     </button>
-                    <button
-                      className="contact__back-button"
-                      type="button"
-                      onClick={() => setStep(4)}
-                    />
                   </div>
                 </div>
               </div>
             )}
           </form>
+          <p className="contact__privacy">
+            Tus datos están seguros. Solo los utilizo para fines de contacto y
+            no se compartirán con terceros ni se usarán para spam.
+          </p>
         </div>
       </section>
     </Modal>

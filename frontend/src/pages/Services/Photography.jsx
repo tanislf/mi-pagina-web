@@ -5,19 +5,19 @@ import EditionCard from "../../components/Animations/EditionGrid";
 function Photography({ onContactClick }) {
   return (
     <>
-      <section className="design">
-        <p className="design__services">FOTÓGRAFA Y EDITORA DIGITAL</p>
-        <h1 className="design__welcome">
-          Visuales que conectan y sitios web que <br />
-          funcionan para creativos.
+      <section className="photography-hero">
+        <p className="photography-hero__services">FOTÓGRAFA Y EDITORA DIGITAL</p>
+        <h1 className="photography-hero__welcome">
+          Capturando la esencia <br />
+          detrás de cada mirada.
         </h1>
 
         <button
           type="button"
           onClick={onContactClick}
-          className="design__button-contact"
+          className="photography-hero__button"
         >
-          Empecemos un proyecto juntos
+          Reserva una sesión
         </button>
       </section>
 
@@ -59,7 +59,10 @@ function Photography({ onContactClick }) {
               <button className="photography__button photography__button_behance" />
             </Link>
 
-            <Link to="" className="photography__link-button">
+            <Link
+              to="mailto:tania.lfbussines@outlook.com"
+              className="photography__link-button"
+            >
               <button className="photography__button photography__button_mail" />
             </Link>
           </div>
@@ -73,7 +76,7 @@ function Photography({ onContactClick }) {
       <section className="photography__edition">
         <div className="photography__edition-container">
           <p className="photography__edition-title">EDICIÓN DIGITAL</p>
-          <h1 className="photography__edition-header"></h1>
+          <h1 className="photography__edition-header">Retoque Profesional</h1>
           <p className="photography__text">
             Donde las imágenes cuentan su mejor versión. Me encargo de realzar
             colores, corregir detalles y cuidar la composición para que cada
@@ -109,7 +112,10 @@ function Photography({ onContactClick }) {
               <button className="photography__button photography__button_behance" />
             </Link>
 
-            <Link to="" className="photography__link-button">
+            <Link
+              to="mailto:tania.lfbussines@outlook.com"
+              className="photography__link-button"
+            >
               <button className="photography__button photography__button_mail" />
             </Link>
           </div>

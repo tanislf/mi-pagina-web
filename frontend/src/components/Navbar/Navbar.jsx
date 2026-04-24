@@ -14,6 +14,7 @@ function Navbar({ onContactClick }) {
         <Link to="/" onClick={closeMenu}>
           <img className="navbar__logo" src={logoLabel} alt="logo de creador" />
         </Link>
+        <span className="navbar__logo-caption">by Tania López Fierros</span>
       </div>
 
       {/* //boton hamburguesa para abrir y cerrar el menu en mobile, con aria-label

@@ -5,11 +5,11 @@ import WebCard from "../../components/Animations/WebGrid.jsx";
 function Design({ onContactClick }) {
   return (
     <>
-      <section className="design">
-        <p className="design__services">
-          IILUSTRADORA, DISEÑADORA Y PROGRAMADORA WEB
+      <section className="design-hero">
+        <p className="design-hero__services">
+          ILUSTRADORA, DISEÑADORA Y PROGRAMADORA WEB
         </p>
-        <h1 className="design__welcome">
+        <h1 className="design-hero__welcome">
           Visuales que conectan y sitios web que <br />
           funcionan para creativos.
         </h1>
@@ -17,7 +17,7 @@ function Design({ onContactClick }) {
         <button
           type="button"
           onClick={onContactClick}
-          className="design__button-contact"
+          className="design-hero__button"
         >
           Empecemos un proyecto juntos
         </button>
@@ -64,7 +64,10 @@ function Design({ onContactClick }) {
               <button className="design__button design__button_behance" />
             </Link>
 
-            <Link to="" className="design__link-button">
+            <Link
+              to="mailto:tania.lfbussines@outlook.com"
+              className="design__link-button"
+            >
               <button className="design__button design__button_mail" />
             </Link>
           </div>
@@ -111,7 +114,10 @@ function Design({ onContactClick }) {
               <button className="design__button design__button_behance" />
             </Link>
 
-            <Link to="" className="design__link-button">
+            <Link
+              to="mailto:tania.lfbussines@outlook.com"
+              className="design__link-button"
+            >
               <button className="design__button design__button_mail" />
             </Link>
           </div>
