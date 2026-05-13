@@ -183,12 +183,24 @@ function Portfolio({
             portfolio.map((project) => (
               <div key={project._id} className="portfolio__grid-container">
                 <div className="portfolio__grid-image-container">
-                  <img
-                    className="portfolio__grid-image"
-                    src={project.images?.[0]}
-                    alt={project.title}
-                    onClick={() => handleImageClick(project)}
-                  />
+                  {project.images?.[0] && project.images[0].match(/\.(mp4|webm|mov|ogg)$/i) ? (
+                    <video
+                      className="portfolio__grid-image"
+                      src={project.images[0]}
+                      onClick={() => handleImageClick(project)}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      className="portfolio__grid-image"
+                      src={project.images?.[0]}
+                      alt={project.title}
+                      onClick={() => handleImageClick(project)}
+                    />
+                  )}
 
                   {isAdmin && (
                     <>

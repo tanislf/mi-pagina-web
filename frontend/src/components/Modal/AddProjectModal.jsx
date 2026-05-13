@@ -25,6 +25,7 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
 
     for (let file of image) {
       formData.append("images", file);
+      formData.append("imageOrder", file.name);
     }
 
     try {
@@ -38,6 +39,28 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFileChange = (e) => {
+    setImage(Array.from(e.target.files));
+  };
+
+  const moveUp = (index) => {
+    if (index === 0) return;
+    setImage((prev) => {
+      const newImages = [...prev];
+      [newImages[index - 1], newImages[index]] = [newImages[index], newImages[index - 1]];
+      return newImages;
+    });
+  };
+
+  const moveDown = (index) => {
+    if (index === image.length - 1) return;
+    setImage((prev) => {
+      const newImages = [...prev];
+      [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
+      return newImages;
+    });
   };
 
   return (
@@ -81,18 +104,37 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
 
         <input
           className="modal__input-image"
-          accept="image/*"
+          accept="image/*,video/*"
           multiple
-          onChange={(e) => setImage(e.target.files)}
+          onChange={handleFileChange}
           type="file"
         />
 
-        <div className="modal__buttons">
+        {image.length > 0 && (
+          <div className="modal__preview-list">
+            {image.map((file, index) => (
+              <div key={index} className="modal__preview-item">
+                {file.type.startsWith("video/") ? (
+                  <video src={URL.createObjectURL(file)} className="modal__preview-media" />
+                ) : (
+                  <img src={URL.createObjectURL(file)} className="modal__preview-media" alt="" />
+                )}
+                <span className="modal__preview-name">{file.name}</span>
+                <div className="modal__preview-actions">
+                  <button type="button" className="modal__preview-btn" onClick={() => moveUp(index)} disabled={index === 0}>⬆️</button>
+                  <button type="button" className="modal__preview-btn" onClick={() => moveDown(index)} disabled={index === image.length - 1}>⬇️</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="modal__buttons" style={{ marginTop: "20px" }}>
           <button className="modal__button" type="submit" disabled={loading}>
             {loading ? <LoaderSmall /> : "Guardar"}
           </button>
           <button className="modal__button" type="button" onClick={onClose}>
-            Cacelar
+            Cancelar
           </button>
         </div>
       </form>

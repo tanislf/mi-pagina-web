@@ -39,7 +39,21 @@ export async function createProject(req, res) {
         .json({ message: "Selecciona al menos una imagen" });
     }
 
-    const images = req.files.map((file) => file.path);
+    let uploadedImages = req.files.map((file) => ({
+      url: file.path,
+      name: file.originalname,
+    }));
+
+    if (req.body.imageOrder) {
+      const order = Array.isArray(req.body.imageOrder)
+        ? req.body.imageOrder
+        : [req.body.imageOrder];
+      uploadedImages.sort((a, b) => {
+        return order.indexOf(a.name) - order.indexOf(b.name);
+      });
+    }
+
+    const images = uploadedImages.map((img) => img.url);
 
     const newProject = await Portfolio.create({
       title,
@@ -102,9 +116,28 @@ export async function updateProject(req, res) {
 
     // actualizar imágenes
     if (req.files && req.files.length > 0) {
-      project.images = req.files.map((file) => file.path);
+      let uploadedImages = req.files.map((file) => ({
+        url: file.path,
+        name: file.originalname,
+      }));
+
+      if (req.body.imageOrder) {
+        const order = Array.isArray(req.body.imageOrder)
+          ? req.body.imageOrder
+          : [req.body.imageOrder];
+        uploadedImages.sort((a, b) => {
+          return order.indexOf(a.name) - order.indexOf(b.name);
+        });
+      }
+
+      project.images = uploadedImages.map((img) => img.url);
+    } else if (req.body.existingImages) {
+      project.images = Array.isArray(req.body.existingImages) 
+        ? req.body.existingImages 
+        : [req.body.existingImages];
     }
 
+    project.markModified("images");
     await project.save();
 
     res.status(200).json(project);
