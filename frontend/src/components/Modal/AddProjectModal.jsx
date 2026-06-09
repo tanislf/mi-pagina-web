@@ -5,6 +5,7 @@ import LoaderSmall from "../Animations/LoaderDotsSmall.jsx";
 
 function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
   const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState([]);
@@ -22,7 +23,7 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     formData.append("description", description);
     formData.append("category", category);
     formData.append("link", link);
-
+    formData.append("date", date);
     for (let file of image) {
       formData.append("images", file);
       formData.append("imageOrder", file.name);
@@ -49,7 +50,10 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     if (index === 0) return;
     setImage((prev) => {
       const newImages = [...prev];
-      [newImages[index - 1], newImages[index]] = [newImages[index], newImages[index - 1]];
+      [newImages[index - 1], newImages[index]] = [
+        newImages[index],
+        newImages[index - 1],
+      ];
       return newImages;
     });
   };
@@ -58,7 +62,10 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     if (index === image.length - 1) return;
     setImage((prev) => {
       const newImages = [...prev];
-      [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
+      [newImages[index], newImages[index + 1]] = [
+        newImages[index + 1],
+        newImages[index],
+      ];
       return newImages;
     });
   };
@@ -75,6 +82,14 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Título"
+        />
+
+        <input
+          className="modal__input"
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          placeholder="Fecha"
         />
 
         <textarea
@@ -100,6 +115,7 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
           <option value="illustration">Ilustración</option>
           <option value="photography">Fotografía</option>
           <option value="web">Desarrollo Web</option>
+          <option value="industrial">Diseño Industrial</option>
         </select>
 
         <input
@@ -115,14 +131,35 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
             {image.map((file, index) => (
               <div key={index} className="modal__preview-item">
                 {file.type.startsWith("video/") ? (
-                  <video src={URL.createObjectURL(file)} className="modal__preview-media" />
+                  <video
+                    src={URL.createObjectURL(file)}
+                    className="modal__preview-media"
+                  />
                 ) : (
-                  <img src={URL.createObjectURL(file)} className="modal__preview-media" alt="" />
+                  <img
+                    src={URL.createObjectURL(file)}
+                    className="modal__preview-media"
+                    alt=""
+                  />
                 )}
                 <span className="modal__preview-name">{file.name}</span>
                 <div className="modal__preview-actions">
-                  <button type="button" className="modal__preview-btn" onClick={() => moveUp(index)} disabled={index === 0}>⬆️</button>
-                  <button type="button" className="modal__preview-btn" onClick={() => moveDown(index)} disabled={index === image.length - 1}>⬇️</button>
+                  <button
+                    type="button"
+                    className="modal__preview-btn"
+                    onClick={() => moveUp(index)}
+                    disabled={index === 0}
+                  >
+                    ⬆️
+                  </button>
+                  <button
+                    type="button"
+                    className="modal__preview-btn"
+                    onClick={() => moveDown(index)}
+                    disabled={index === image.length - 1}
+                  >
+                    ⬇️
+                  </button>
                 </div>
               </div>
             ))}

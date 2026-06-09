@@ -32,7 +32,13 @@ function Portfolio({
     try {
       setLoading(true);
       const data = await api.getProjects(category);
-      setPortfolio(data);
+      const sortedData = data.sort((a, b) => {
+        const dateA = new Date(a.date || 0).getTime();
+        const dateB = new Date(b.date || 0).getTime();
+        // Si la fecha es inválida, se enviará al final
+        return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
+      });
+      setPortfolio(sortedData);
     } catch (err) {
       console.error(err);
     } finally {
@@ -98,6 +104,7 @@ function Portfolio({
           { label: "Ilustración", value: "illustration" },
           { label: "Fotografía", value: "photography" },
           { label: "Desarrollo web", value: "web" },
+          { label: "Diseño Industrial", value: "industrial" },
           { label: "Todos", value: "" },
         ].map(({ label, value }) => (
           <button
@@ -183,7 +190,8 @@ function Portfolio({
             portfolio.map((project) => (
               <div key={project._id} className="portfolio__grid-container">
                 <div className="portfolio__grid-image-container">
-                  {project.images?.[0] && project.images[0].match(/\.(mp4|webm|mov|ogg)$/i) ? (
+                  {project.images?.[0] &&
+                  project.images[0].match(/\.(mp4|webm|mov|ogg)$/i) ? (
                     <video
                       className="portfolio__grid-image"
                       src={project.images[0]}
@@ -230,6 +238,15 @@ function Portfolio({
                     {project.category}
                   </figure>
                 </div>
+
+                {project.date && (
+                  <p className="portfolio__grid-date">
+                    {new Date(project.date).toLocaleDateString("es-MX", {
+                      year: "numeric",
+                      month: "long",
+                    })}
+                  </p>
+                )}
 
                 <p className="portfolio__grid-text">{project.description}</p>
                 <a

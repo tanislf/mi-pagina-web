@@ -5,6 +5,7 @@ import api from "../../utils/api.js";
 
 function EditProject({ isOpen, onClose, project, onUpdated }) {
   const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [images, setImages] = useState(null);
@@ -21,6 +22,7 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     setDescription(project.description || "");
     setCategory(project.category || "");
     setLink(project.link || "");
+    setDate(project.date || "");
     setExistingImages(project.images || []);
     setImages(null);
   }, [project]);
@@ -33,7 +35,10 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     if (index === 0) return;
     setExistingImages((prev) => {
       const newImages = [...prev];
-      [newImages[index - 1], newImages[index]] = [newImages[index], newImages[index - 1]];
+      [newImages[index - 1], newImages[index]] = [
+        newImages[index],
+        newImages[index - 1],
+      ];
       return newImages;
     });
   };
@@ -42,7 +47,10 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     if (index === existingImages.length - 1) return;
     setExistingImages((prev) => {
       const newImages = [...prev];
-      [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
+      [newImages[index], newImages[index + 1]] = [
+        newImages[index + 1],
+        newImages[index],
+      ];
       return newImages;
     });
   };
@@ -51,7 +59,10 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     if (index === 0) return;
     setImages((prev) => {
       const newImages = [...prev];
-      [newImages[index - 1], newImages[index]] = [newImages[index], newImages[index - 1]];
+      [newImages[index - 1], newImages[index]] = [
+        newImages[index],
+        newImages[index - 1],
+      ];
       return newImages;
     });
   };
@@ -60,7 +71,10 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     if (index === images.length - 1) return;
     setImages((prev) => {
       const newImages = [...prev];
-      [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
+      [newImages[index], newImages[index + 1]] = [
+        newImages[index + 1],
+        newImages[index],
+      ];
       return newImages;
     });
   };
@@ -72,6 +86,7 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     const formData = new FormData();
 
     formData.append("title", title);
+    formData.append("date", date);
     formData.append("description", description);
     formData.append("category", category);
     formData.append("link", link);
@@ -81,7 +96,10 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
         formData.append("images", file);
         formData.append("imageOrder", file.name);
       }
-    } else if (existingImages?.length) {
+    }
+
+    //incluir las imagenes existentes para mantenerlas, el backend las reordenará según el orden actual
+    if (existingImages?.length) {
       for (let url of existingImages) {
         formData.append("existingImages", url);
       }
@@ -115,6 +133,14 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
             onChange={(e) => setTitle(e.target.value)}
           />
 
+          <input
+            className="editmodal__input"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            placeholder="Fecha"
+          />
+
           <textarea
             className="editmodal__input"
             value={description}
@@ -138,6 +164,7 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
             <option value="illustration">Ilustración</option>
             <option value="photography">Fotografía</option>
             <option value="web">Desarrollo Web</option>
+            <option value="industrial">Diseño Industrial</option>
           </select>
 
           <input
@@ -152,19 +179,42 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
         {/* Mostrar imágenes nuevas si hay, si no, mostrar las existentes */}
         {images?.length > 0 ? (
           <div className="editmodal__preview-list-container">
-            <p className="editmodal__preview-title">Nuevos archivos seleccionados:</p>
+            <p className="editmodal__preview-title">
+              Nuevos archivos seleccionados:
+            </p>
             <div className="editmodal__preview-list">
               {images.map((file, index) => (
                 <div key={index} className="editmodal__preview-item">
                   {file.type.startsWith("video/") ? (
-                    <video src={URL.createObjectURL(file)} className="editmodal__preview-media" />
+                    <video
+                      src={URL.createObjectURL(file)}
+                      className="editmodal__preview-media"
+                    />
                   ) : (
-                    <img src={URL.createObjectURL(file)} className="editmodal__preview-media" alt="" />
+                    <img
+                      src={URL.createObjectURL(file)}
+                      className="editmodal__preview-media"
+                      alt=""
+                    />
                   )}
                   <span className="editmodal__preview-name">{file.name}</span>
                   <div className="editmodal__preview-actions">
-                    <button type="button" className="editmodal__preview-btn" onClick={() => moveNewUp(index)} disabled={index === 0}>⬆️</button>
-                    <button type="button" className="editmodal__preview-btn" onClick={() => moveNewDown(index)} disabled={index === images.length - 1}>⬇️</button>
+                    <button
+                      type="button"
+                      className="editmodal__preview-btn"
+                      onClick={() => moveNewUp(index)}
+                      disabled={index === 0}
+                    >
+                      ⬆️
+                    </button>
+                    <button
+                      type="button"
+                      className="editmodal__preview-btn"
+                      onClick={() => moveNewDown(index)}
+                      disabled={index === images.length - 1}
+                    >
+                      ⬇️
+                    </button>
                   </div>
                 </div>
               ))}
@@ -179,12 +229,32 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
                   {url.match(/\.(mp4|webm|mov|ogg)$/i) ? (
                     <video src={url} className="editmodal__preview-media" />
                   ) : (
-                    <img src={url} className="editmodal__preview-media" alt="" />
+                    <img
+                      src={url}
+                      className="editmodal__preview-media"
+                      alt=""
+                    />
                   )}
-                  <span className="editmodal__preview-name">Archivo {index + 1}</span>
+                  <span className="editmodal__preview-name">
+                    Archivo {index + 1}
+                  </span>
                   <div className="editmodal__preview-actions">
-                    <button type="button" className="editmodal__preview-btn" onClick={() => moveExistingUp(index)} disabled={index === 0}>⬆️</button>
-                    <button type="button" className="editmodal__preview-btn" onClick={() => moveExistingDown(index)} disabled={index === existingImages.length - 1}>⬇️</button>
+                    <button
+                      type="button"
+                      className="editmodal__preview-btn"
+                      onClick={() => moveExistingUp(index)}
+                      disabled={index === 0}
+                    >
+                      ⬆️
+                    </button>
+                    <button
+                      type="button"
+                      className="editmodal__preview-btn"
+                      onClick={() => moveExistingDown(index)}
+                      disabled={index === existingImages.length - 1}
+                    >
+                      ⬇️
+                    </button>
                   </div>
                 </div>
               ))}

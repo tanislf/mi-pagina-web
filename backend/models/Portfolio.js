@@ -14,7 +14,7 @@ const portfolioSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ["illustration", "photography", "web"],
+      enum: ["illustration", "photography", "web", "industrial"],
       required: true,
     },
     images: [
@@ -24,6 +24,9 @@ const portfolioSchema = new mongoose.Schema(
       },
     ],
     link: {
+      type: String,
+    },
+    date: {
       type: String,
     },
     featured: {
