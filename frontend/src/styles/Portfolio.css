@@ -316,11 +316,11 @@
 }
 
 .portfolio__grid-date {
-  color: rgb(198, 17, 17);
+  color: rgb(0, 0, 0);
   font-weight: bold;
   font-family: "Oswald";
   margin: 0 0 5px 0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 @keyframes portfolioFadeInUp {
