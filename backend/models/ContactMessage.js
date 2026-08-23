@@ -4,7 +4,13 @@ const contactMessageSchema = new mongoose.Schema(
   {
     service: {
       type: String,
-      enum: ["Ilustración", "Website", "Fotografía", "Edición"],
+      enum: [
+        "Ilustración",
+        "Website",
+        "Fotografía",
+        "Edición",
+        "Diseño Industrial",
+      ],
       required: true,
     },
 

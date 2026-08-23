@@ -1,9 +1,12 @@
 import * as z from "zod";
 
 export const ContactSchema = z.object({
-  service: z.enum(["Ilustración", "Website", "Fotografía", "Edición"], {
-    errorMap: () => ({ message: "Selecciona un servicio válido" }),
-  }),
+  service: z.enum(
+    ["Ilustración", "Website", "Fotografía", "Edición", "Diseño Industrial"],
+    {
+      errorMap: () => ({ message: "Selecciona un servicio válido" }),
+    },
+  ),
 
   time: z.enum(["Urgente", "Próximo", "Hay tiempo", "Relájate"], {
     errorMap: () => ({ message: "Selecciona un plazo válido" }),

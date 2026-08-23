@@ -17,6 +17,9 @@ function ServicesModal({ isOpen, onClose }) {
         <button type="button" className="services-modal__button">
           Edición digital
         </button>
+        <button type="button" className="services-modal__button">
+          Diseño Industrial
+        </button>
       </div>
     </Modal>
   );

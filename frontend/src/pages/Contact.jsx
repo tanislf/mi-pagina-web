@@ -111,6 +111,13 @@ function ContactForm({ isOpen, onClose, onSuccess, onError }) {
                   >
                     Edición
                   </button>
+                  <button
+                    type="button"
+                    className="contact__option"
+                    onClick={() => nextStep("service", "Diseño Industrial")}
+                  >
+                    Diseño Industrial
+                  </button>
                 </div>
               </div>
             )}
