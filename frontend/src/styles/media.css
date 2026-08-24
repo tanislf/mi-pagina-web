@@ -1,3 +1,28 @@
+/* Reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .pcard,
+  .pcard__image,
+  .pcard__thumb-media {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio__options {
+    padding: 0 16px 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .portfolio__works {
+    padding: 0 12px 60px;
+  }
+
+  .portfolio__list {
+    gap: 32px;
+  }
+}
+
 @media (max-width: 768px) {
   #root {
     padding: 1rem; /* menos padding lateral en pantallas pequeñas */
@@ -421,18 +446,6 @@
     height: 44px;
   }
 
-  /* Grid de 1 columna en móvil */
-  .portfolio__grid {
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-  }
-
-  /* Tarjetas: sin hover de scale en touch */
-  .portfolio__grid-container:hover {
-    transform: none;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  }
-
   /* Botones de editar/eliminar siempre visibles en móvil
      (no hay hover en touch para revelarlos)               */
   .portfolio__image-button {
@@ -440,14 +453,37 @@
     transform: translateY(0);
   }
 
-  .portfolio__grid-name {
-    font-size: 20px;
-  }
-
   .portfolio__logout-message {
     top: 70px;
     right: 12px;
     font-size: 0.8rem;
+  }
+
+  /* Grid de tarjetas: 1 columna en móvil */
+  .portfolio__list {
+    grid-template-columns: 1fr;
+  }
+
+  .pcard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pcard__image-wrap {
+    min-height: 260px;
+  }
+
+  .pcard__info-col {
+    padding: 28px 24px 24px;
+  }
+
+  .pcard__index {
+    font-size: 2rem;
+    top: 20px;
+    right: 20px;
+  }
+
+  .pcard__title {
+    padding-right: 40px;
   }
 
   .admin__container {
@@ -541,7 +577,6 @@
     -webkit-overflow-scrolling: touch;
   }
 
-
   .contact__header {
     font-size: 28px;
     margin: 16px 0;
@@ -552,7 +587,6 @@
     grid-template-rows: auto;
     width: 90%;
     grid-gap: 20px;
-
   }
 
   .contact__text {
@@ -587,7 +621,7 @@
     height: 35px;
     width: 35px;
     background-size: contain;
-    background-color:rgb(214, 214, 214);
+    background-color: rgb(214, 214, 214);
     border-radius: 30px;
     margin: 0;
     z-index: 10;
@@ -706,8 +740,8 @@
   }
 
   .design-hero {
-padding: 0;
-  } 
+    padding: 0;
+  }
 
   .design__illustration,
   .design__web {
@@ -765,16 +799,6 @@ padding: 0;
     padding: 0 0 40px 40px;
     gap: 20px;
     flex-wrap: wrap;
-  }
-
-  /* Grid de 2 columnas en tablet */
-  .portfolio__grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 24px;
-  }
-
-  .portfolio__works {
-    padding: 0 20px;
   }
 
   /* Modal de Contacto en Tablet */
