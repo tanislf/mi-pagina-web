@@ -29,6 +29,14 @@ const portfolioSchema = new mongoose.Schema(
     date: {
       type: String,
     },
+    collaboration: {
+      type: String,
+      trim: true,
+    },
+    exhibition: {
+      type: String,
+      trim: true,
+    },
     featured: {
       type: Boolean,
       default: false,

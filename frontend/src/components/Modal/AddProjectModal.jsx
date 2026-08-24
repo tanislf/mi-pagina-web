@@ -8,6 +8,8 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [collaboration, setCollaboration] = useState("");
+  const [exhibition, setExhibition] = useState("");
   const [image, setImage] = useState([]);
   const [link, setLink] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,6 +26,11 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
     formData.append("category", category);
     formData.append("link", link);
     formData.append("date", date);
+    if (category === "industrial") {
+      formData.append("collaboration", collaboration);
+      formData.append("exhibition", exhibition);
+    }
+    
     for (let file of image) {
       formData.append("images", file);
       formData.append("imageOrder", file.name);
@@ -117,6 +124,23 @@ function AddProjectModal({ isOpen, onClose, onProjectAdded }) {
           <option value="web">Desarrollo Web</option>
           <option value="industrial">Diseño Industrial</option>
         </select>
+
+        {category === "industrial" && (
+          <>
+            <input
+              className="modal__input"
+              value={collaboration}
+              onChange={(e) => setCollaboration(e.target.value)}
+              placeholder="Colaboración (opcional)"
+            />
+            <input
+              className="modal__input"
+              value={exhibition}
+              onChange={(e) => setExhibition(e.target.value)}
+              placeholder="Exhibición (opcional)"
+            />
+          </>
+        )}
 
         <input
           className="modal__input-image"

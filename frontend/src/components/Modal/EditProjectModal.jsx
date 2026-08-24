@@ -8,6 +8,8 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [collaboration, setCollaboration] = useState("");
+  const [exhibition, setExhibition] = useState("");
   const [images, setImages] = useState(null);
   const [existingImages, setExistingImages] = useState([]);
   const [link, setLink] = useState("");
@@ -23,6 +25,8 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     setCategory(project.category || "");
     setLink(project.link || "");
     setDate(project.date || "");
+    setCollaboration(project.collaboration || "");
+    setExhibition(project.exhibition || "");
     setExistingImages(project.images || []);
     setImages(null);
   }, [project]);
@@ -90,6 +94,14 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
     formData.append("description", description);
     formData.append("category", category);
     formData.append("link", link);
+    if (category === "industrial") {
+      formData.append("collaboration", collaboration);
+      formData.append("exhibition", exhibition);
+    } else {
+      // If category is changed from industrial to something else, clear them
+      formData.append("collaboration", "");
+      formData.append("exhibition", "");
+    }
 
     if (images?.length) {
       for (let file of images) {
@@ -166,6 +178,23 @@ function EditProject({ isOpen, onClose, project, onUpdated }) {
             <option value="web">Desarrollo Web</option>
             <option value="industrial">Diseño Industrial</option>
           </select>
+
+          {category === "industrial" && (
+            <>
+              <input
+                className="editmodal__input"
+                value={collaboration}
+                onChange={(e) => setCollaboration(e.target.value)}
+                placeholder="Colaboración (opcional)"
+              />
+              <input
+                className="editmodal__input"
+                value={exhibition}
+                onChange={(e) => setExhibition(e.target.value)}
+                placeholder="Exhibición (opcional)"
+              />
+            </>
+          )}
 
           <input
             className="editmodal__input-image"

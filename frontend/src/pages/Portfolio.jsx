@@ -38,6 +38,7 @@ function Portfolio({
         // Si la fecha es inválida, se enviará al final
         return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
       });
+      console.log("Proyectos cargados:", sortedData);
       setPortfolio(sortedData);
     } catch (err) {
       console.error(err);
@@ -249,6 +250,16 @@ function Portfolio({
                 )}
 
                 <p className="portfolio__grid-text">{project.description}</p>
+                {project.category === "industrial" && project.collaboration && (
+                  <p className="portfolio__grid-text" style={{ marginTop: "10px" }}>
+                    <strong>Colaboración:</strong> {project.collaboration}
+                  </p>
+                )}
+                {project.category === "industrial" && project.exhibition && (
+                  <p className="portfolio__grid-text" style={{ marginTop: "5px" }}>
+                    <strong>Exhibición:</strong> {project.exhibition}
+                  </p>
+                )}
                 <a
                   href={project.link}
                   target="_blank"

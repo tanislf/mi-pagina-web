@@ -28,7 +28,7 @@ export async function getProjects(req, res) {
 //Crear Proyecto
 export async function createProject(req, res) {
   try {
-    const { title, description, category, link, date } = req.body;
+    const { title, description, category, link, date, collaboration, exhibition } = req.body;
 
     if (!title || !description || !category) {
       return res.status(400).json({
@@ -65,7 +65,11 @@ export async function createProject(req, res) {
       images,
       link,
       date,
+      collaboration,
+      exhibition,
     });
+
+    console.log("Nuevo proyecto guardado:", newProject);
 
     res.status(201).json(newProject);
   } catch (error) {
@@ -102,7 +106,7 @@ export async function deleteProject(req, res) {
 export async function updateProject(req, res) {
   try {
     const { id } = req.params;
-    const { title, description, category, link, featured, order, date } =
+    const { title, description, category, link, featured, order, date, collaboration, exhibition } =
       req.body;
 
     // LOG TEMPORAL — borra estas dos líneas cuando confirmes que funciona
@@ -122,9 +126,16 @@ export async function updateProject(req, res) {
     if (featured !== undefined) project.featured = featured;
     if (order !== undefined) project.order = order;
     if (date !== undefined) project.date = date;
+    if (collaboration !== undefined) project.collaboration = collaboration;
+    if (exhibition !== undefined) project.exhibition = exhibition;
 
     // LOG TEMPORAL — borra esta línea cuando confirmes que funciona
-    console.log("DATE EN PROYECTO ANTES DE SAVE:", project.date);
+    console.log("DATOS ACTUALIZADOS EN PROYECTO ANTES DE SAVE:", { 
+      collaboration: project.collaboration, 
+      exhibition: project.exhibition,
+      bodyCollab: req.body.collaboration,
+      bodyExhib: req.body.exhibition
+    });
 
     // actualizar imágenes nuevas si las hay
     if (req.files && req.files.length > 0) {
